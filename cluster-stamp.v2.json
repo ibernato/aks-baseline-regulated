@@ -58,7 +58,7 @@
             }
         },
         "geoRedundancyLocation": {
-            "defaultValue": "centralus",
+            "defaultValue": "australiasoutheast",
             "type": "string",
             "allowedValues": [
                 "australiasoutheast",
@@ -130,7 +130,7 @@
         "apwResourceId": "[resourceId('Microsoft.Network/applicationGateways', variables('agwName'))]",
         "jumpBoxDefaultAdminUserName": "[uniqueString(variables('clusterName'), resourceGroup().id)]",
         "clusterControlPlaneIdentityName": "[concat('mi-', variables('clusterName'), '-controlplane')]",
-        "keyVaultName": "[concat('kv-1-', variables('clusterName'))]",
+        "keyVaultName": "[concat('kv-2-', variables('clusterName'))]",
         "policyResourceIdAKSLinuxRestrictive": "/providers/Microsoft.Authorization/policySetDefinitions/42b8ef37-b724-4e24-bbc8-7a7708edfe00",
         "policyResourceIdEnforceHttpsIngress": "/providers/Microsoft.Authorization/policyDefinitions/1a5b4dca-0b6f-4cf5-907c-56316bc1bf3d",
         "policyResourceIdEnforceInternalLoadBalancers": "/providers/Microsoft.Authorization/policyDefinitions/3fc4dc25-5baf-40d8-9b05-7fe74c1bc64e",
@@ -228,9 +228,9 @@
                     "storageProfile": {
                         "osDisk": {
                             "createOption": "FromImage",
-                            "caching": "ReadOnly",
-                            "diffDiskSettings": {
-                                "option": "Local"
+                            "caching": "ReadWrite",
+                            "managedDisk": {
+                                "storageAccountType": "StandardSSD_LRS"
                             },
                             "osType": "Linux"
                         },
@@ -1171,22 +1171,22 @@
                     ],
                     "properties": {}
                 },
-                {
-                    "type": "agentPools",
-                    "apiVersion": "2019-06-01-preview",
-                    "name": "acragent",
-                    "location": "[parameters('location')]",
-                    "comments": "ACR Build Agent pool",
-                    "dependsOn": [
-                        "[resourceId('Microsoft.ContainerRegistry/registries', variables('defaultAcrName'))]"
-                    ],
-                    "properties": {
-                        "count": 1,
-                        "os": "Linux",
-                        "tier": "S1",
-                        "virtualNetworkSubnetResourceId": "[variables('vnetAcrBuildSubnetResourceId')]"
-                    }
-                },
+                // {
+                //     "type": "agentPools",
+                //     "apiVersion": "2019-06-01-preview",
+                //     "name": "acragent",
+                //     "location": "[parameters('location')]",
+                //     "comments": "ACR Build Agent pool",
+                //     "dependsOn": [
+                //         "[resourceId('Microsoft.ContainerRegistry/registries', variables('defaultAcrName'))]"
+                //     ],
+                //     "properties": {
+                //         "count": 1,
+                //         "os": "Linux",
+                //         "tier": "S1",
+                //         "virtualNetworkSubnetResourceId": "[variables('vnetAcrBuildSubnetResourceId')]"
+                //     }
+                // },
                 {
                     "type": "providers/diagnosticSettings",
                     "apiVersion": "2021-05-01-preview",
@@ -1462,9 +1462,11 @@
                 },
                 "disableLocalAccounts": true,
                 "securityProfile": {
-                    "azureDefender": {
-                        "enabled": true,
-                        "logAnalyticsWorkspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', variables('logAnalyticsWorkspaceName'))]"
+                    "defender": {
+                        "securityMonitoring": {
+                            "enabled": true,
+                            "logAnalyticsWorkspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', variables('logAnalyticsWorkspaceName'))]"
+                        }
                     }
                 }
             },
@@ -2385,10 +2387,10 @@
                         "value": "audit"
                     },
                     "cpuLimit": {
-                        "value": "2000m"
+                        "value": "1500m"
                     },
                     "memoryLimit": {
-                        "value": "1Gi"
+                        "value": "2Gi"
                     },
                     "excludedNamespaces": {
                         "value": [
