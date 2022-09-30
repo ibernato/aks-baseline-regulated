@@ -6,4 +6,4 @@
 *.pub
 sp.json
 
-jumpbox/**/*.bicep
+# jumpbox/**/*.bicep
