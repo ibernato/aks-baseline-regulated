@@ -40,7 +40,7 @@ You are going to be using Azure Image Builder to generate a Kubernetes-specific 
    RESOURCEID_VNET_HUB=$(az deployment group show -g rg-enterprise-networking-hubs -n hub-region.v0 --query properties.outputs.hubVnetId.value -o tsv)
 
    # [This takes about one minute to run.]
-   az deployment group create -g rg-enterprise-networking-spokes -f networking/spoke-BU0001A0005-00.bicep -p location=eastus2 hubVnetResourceId="${RESOURCEID_VNET_HUB}"
+   az deployment group create -g rg-enterprise-networking-spokes -f networking/spoke-BU0001A0005-00.bicep -p location=australiaeast hubVnetResourceId="${RESOURCEID_VNET_HUB}"
    ```
 
 1. Update the regional hub deployment to account for the requirements of the spoke.
@@ -53,7 +53,7 @@ You are going to be using Azure Image Builder to generate a Kubernetes-specific 
    RESOURCEID_SUBNET_AIB=$(az deployment group show -g rg-enterprise-networking-spokes -n spoke-BU0001A0005-00 --query properties.outputs.imageBuilderSubnetResourceId.value -o tsv)
 
    # [This takes about five minutes to run.]
-   az deployment group create -g rg-enterprise-networking-hubs -f networking/hub-region.v1.bicep -p location=eastus2 aksImageBuilderSubnetResourceId="${RESOURCEID_SUBNET_AIB}"
+   az deployment group create -g rg-enterprise-networking-hubs -f networking/hub-region.v1.bicep -p location=australiaeast aksImageBuilderSubnetResourceId="${RESOURCEID_SUBNET_AIB}"
    ```
 
 ### Build and deploy the jump box image
@@ -74,7 +74,7 @@ Now that we have our image building network created, egressing through our hub, 
 
    ```bash
    # [This takes about one minute to run.]
-   az deployment sub create -f jumpbox/createsubscriptionroles.bicep -l centralus -n DeployAibRbacRoles
+   az deployment sub create -f jumpbox/createsubscriptionroles.bicep -l australiaeast -n DeployAibRbacRoles
    ```
 
 1. Create the AKS jump box image template. (🛑 _if not using the custom roles created above._)
@@ -88,7 +88,7 @@ Now that we have our image building network created, egressing through our hub, 
    ROLEID_IMGDEPLOY=$(az deployment sub show -n DeployAibRbacRoles --query 'properties.outputs.roleResourceIds.value.customImageBuilderImageCreationRole.guid' -o tsv)
 
    # [This takes about one minute to run.]
-   az deployment group create -g rg-bu0001a0005 -f jumpbox/azuredeploy.bicep -p buildInSubnetResourceId=${RESOURCEID_SUBNET_AIB} location=eastus2 imageBuilderNetworkingRoleGuid="${ROLEID_NETWORKING}" imageBuilderImageCreationRoleGuid="${ROLEID_IMGDEPLOY}" -n CreateJumpBoxImageTemplate
+   az deployment group create -g rg-bu0001a0005 -f jumpbox/azuredeploy.bicep -p buildInSubnetResourceId=${RESOURCEID_SUBNET_AIB} location=australiaeast imageBuilderNetworkingRoleGuid="${ROLEID_NETWORKING}" imageBuilderImageCreationRoleGuid="${ROLEID_IMGDEPLOY}" -n CreateJumpBoxImageTemplate
    ```
 
 1. Build the general-purpose AKS jump box image.

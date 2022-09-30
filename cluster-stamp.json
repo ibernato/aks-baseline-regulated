@@ -34,7 +34,7 @@
             }
         },
         "location": {
-            "defaultValue": "eastus",
+            "defaultValue": "australiaeast",
             "type": "string",
             "allowedValues": [
                 "australiaeast",
@@ -58,7 +58,7 @@
             }
         },
         "geoRedundancyLocation": {
-            "defaultValue": "centralus",
+            "defaultValue": "australiasoutheast",
             "type": "string",
             "allowedValues": [
                 "australiasoutheast",
