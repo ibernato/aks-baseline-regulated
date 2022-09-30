@@ -383,7 +383,7 @@ resource pipAzureBastion 'Microsoft.Network/publicIPAddresses@2021-05-01' = {
   zones: [
     '1'
     '2'
-    '3'    
+    '3'
   ]
   properties: {
     publicIPAllocationMethod: 'Static'
@@ -507,7 +507,7 @@ resource region_flowlog_storageAccount_diagnosticSettings 'Microsoft.Insights/di
     ]
   }
 }
-
+/*
 @description('This is the regional Azure Firewall that all regional spoke networks can egress through.')
 resource hubFirewall 'Microsoft.Network/azureFirewalls@2021-05-01' = {
   name: 'fw-${location}'
@@ -768,7 +768,7 @@ resource hubFirewall_diagnosticSettings 'Microsoft.Insights/diagnosticSettings@2
       }
     ]
   }
-}
+}*/
 
 @description('Flow Logs deployment')
 module regionalFlowlogsDeployment 'modules/flowlogsDeployment.bicep' = if (deployFlowLogResources) {

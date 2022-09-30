@@ -1,0 +1,25 @@
+{
+    "status": "Failed",
+    "error": {
+        "code": "DeploymentFailed",
+        "message": "At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/DeployOperations for usage details.",
+        "details": [
+            {
+                "code": "BadRequest",
+                "message": "{\r\n  \"error\": {\r\n    \"code\": \"InvalidResourceReference\",\r\n    \"message\": \"Resource /subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/RG-ENTERPRISE-NETWORKING-SPOKES/providers/Microsoft.Network/virtualNetworks/VNET-SPOKE-BU0001A0005-01 referenced by resource /subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/rg-bu0001a0005/providers/Microsoft.Network/privateEndpoints/pe-acraksyeshkeqtwapem was not found. Please make sure that the referenced resource exists, and that both resources are in the same region.\",\r\n    \"details\": [\r\n      {\r\n        \"code\": \"NotFound\",\r\n        \"message\": \"Resource /subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/RG-ENTERPRISE-NETWORKING-SPOKES/providers/Microsoft.Network/virtualNetworks/VNET-SPOKE-BU0001A0005-01 not found.\"\r\n      }\r\n    ]\r\n  }\r\n}"
+            },
+            {
+                "code": "NotFound",
+                "message": "{\r\n  \"error\": {\r\n    \"code\": \"NotFound\",\r\n    \"message\": \"The Image '/subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/rg-bu0001a0005/providers/Microsoft.Compute/images/img-aksopsjb-20220929T145038' cannot be found in 'eastus' region.\"\r\n  }\r\n}"
+            },
+            {
+                "code": "Conflict",
+                "message": "{\r\n  \"status\": \"Failed\",\r\n  \"error\": {\r\n    \"code\": \"ResourceDeploymentFailure\",\r\n    \"message\": \"The resource operation completed with terminal provisioning state 'Failed'.\",\r\n    \"details\": [\r\n      {\r\n        \"code\": \"Runtime failure\",\r\n        \"message\": \"The status for Agent Pool acragent is Failed. Error Message: [09/29/2022 15:16:30 +00:00] Registry location 'eastus' cannot be different than VNET location 'eastus2'. Registry Resource Id: /subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/rg-bu0001a0005/providers/Microsoft.ContainerRegistry/registries/acraksyeshkeqtwapem. \"\r\n      }\r\n    ]\r\n  }\r\n}"
+            },
+            {
+                "code": "Conflict",
+                "message": "{\r\n  \"status\": \"Failed\",\r\n  \"error\": {\r\n    \"code\": \"ResourceDeploymentFailure\",\r\n    \"message\": \"The resource operation completed with terminal provisioning state 'Failed'.\",\r\n    \"details\": [\r\n      {\r\n        \"code\": \"DeploymentFailed\",\r\n        \"message\": \"At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/DeployOperations for usage details.\",\r\n        \"details\": [\r\n          {\r\n            \"code\": \"NotFound\",\r\n            \"message\": \"{\\r\\n  \\\"error\\\": {\\r\\n    \\\"code\\\": \\\"ResourceNotFound\\\",\\r\\n    \\\"message\\\": \\\"The Resource 'Microsoft.Network/privateDnsZones/privatelink.eastus.azmk8s.io' under resource group 'rg-enterprise-networking-spokes' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix\\\"\\r\\n  }\\r\\n}\"\r\n          }\r\n        ]\r\n      }\r\n    ]\r\n  }\r\n}"
+            }
+        ]
+    }
+}

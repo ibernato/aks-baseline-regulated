@@ -22,7 +22,7 @@ param hubVnetResourceId string
     'westeurope'
     'japaneast'
     'southeastasia'
-  ])
+])
 @description('The spokes\'s regional affinity, must be the same as the hub\'s location. All resources tied to this spoke will also be homed in this region. The network team maintains this approved regional list which is a subset of zones with Availability Zone support.')
 param location string
 
@@ -38,15 +38,15 @@ var orgAppId = 'BU0001A0005'
 
 @description('The resource group name containing virtual network in which the regional Azure Firewall is deployed.')
 resource rgHubs 'Microsoft.Resources/resourceGroups@2021-04-01' existing = {
-  scope: subscription()
-  name: split(hubVnetResourceId, '/')[4]
+    scope: subscription()
+    name: split(hubVnetResourceId, '/')[4]
 }
 
-@description('The regional Azure Firewall that all regional spoke networks can egress through.')
+/*@description('The regional Azure Firewall that all regional spoke networks can egress through.')
 resource hubFirewall 'Microsoft.Network/azureFirewalls@2021-05-01' existing = {
   scope: rgHubs
   name: 'fw-${location}'
-}
+}*/
 
 @description('The regional hub network')
 resource hubsVnet 'Microsoft.Network/virtualNetworks@2021-05-01' existing = {
@@ -55,7 +55,7 @@ resource hubsVnet 'Microsoft.Network/virtualNetworks@2021-05-01' existing = {
 
     resource azureBastionSubnet 'subnets' existing = {
         name: 'AzureBastionSubnet'
-      }
+    }
 }
 
 @description('The hub\'s resource group')
@@ -84,14 +84,14 @@ resource afRouteTable 'Microsoft.Network/routeTables@2021-05-01' = {
     location: location
     properties: {
         routes: [
-            {
+            /*{
                 name: 'r-nexthop-to-fw'
                 properties: {
                     nextHopType: 'VirtualAppliance'
                     addressPrefix: '0.0.0.0/0'
                     nextHopIpAddress: hubFirewall.properties.ipConfigurations[0].properties.privateIPAddress
                 }
-            }
+            }*/
         ]
     }
 }
@@ -713,9 +713,9 @@ resource clusterVNet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
                 name: 'snet-management-acragents'
                 properties: {
                     addressPrefix: '10.240.251.0/28'
-                    /*routeTable: {
+                    routeTable: {
                         id: afRouteTable.id
-                    }*/
+                    }
                     networkSecurityGroup: {
                         id: nsgAcrDockerSubnet.id
                     }
@@ -738,11 +738,11 @@ resource clusterVNet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
                 }
             }
         ]
-        dhcpOptions: {
+        /*dhcpOptions: {
             dnsServers: [
                 hubFirewall.properties.ipConfigurations[0].properties.privateIPAddress
             ]
-        }
+        }*/
     }
     dependsOn: [
         policyAssignmentNoPublicIpsInVnet
@@ -769,7 +769,7 @@ resource clusterVNet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
 module policyAssignmentNoPublicIpsInVnet './modules/ClusterVNetShouldNotHaveNICwithpublicIP.bicep' = {
     name: 'Apply-Subscription-Spoke-PipUsage-Policies-01'
     params: {
-        clusterVNetId: resourceId('Microsoft.Network/virtualNetworks','vnet-spoke-${orgAppId}-01')
+        clusterVNetId: resourceId('Microsoft.Network/virtualNetworks', 'vnet-spoke-${orgAppId}-01')
     }
 }
 
@@ -924,10 +924,10 @@ module flowlogsDeploymentAcrDockerSubnet 'modules/flowlogsDeployment.bicep' = if
     name: 'flowlogs-Deployment-AcrDockerSubnet-NSG'
     scope: networkWatcherResourceGroup
     params: {
-      location: location
-      targetResourceId: nsgAcrDockerSubnet.id
-      laHubId: hubLaWorkspace.id
-      flowLogsStorageId: flowlogs_storageAccount.id
+        location: location
+        targetResourceId: nsgAcrDockerSubnet.id
+        laHubId: hubLaWorkspace.id
+        flowLogsStorageId: flowlogs_storageAccount.id
     }
 }
 
@@ -935,10 +935,10 @@ module flowlogsDeploymentAksDefaultILBSubnet 'modules/flowlogsDeployment.bicep' 
     name: 'flowlogs-Deployment-AksDefaultILB-Subnet-NSG'
     scope: networkWatcherResourceGroup
     params: {
-      location: location
-      targetResourceId: nsgAksDefaultILBSubnet.id
-      laHubId: hubLaWorkspace.id
-      flowLogsStorageId: flowlogs_storageAccount.id
+        location: location
+        targetResourceId: nsgAksDefaultILBSubnet.id
+        laHubId: hubLaWorkspace.id
+        flowLogsStorageId: flowlogs_storageAccount.id
     }
 }
 
@@ -946,10 +946,10 @@ module flowlogsDeploymentAppGatewaySubnet 'modules/flowlogsDeployment.bicep' = i
     name: 'flowlogs-Deployment-AppGateway-Subnet-NSG'
     scope: networkWatcherResourceGroup
     params: {
-      location: location
-      targetResourceId: nsgAppGatewaySubnet.id
-      laHubId: hubLaWorkspace.id
-      flowLogsStorageId: flowlogs_storageAccount.id
+        location: location
+        targetResourceId: nsgAppGatewaySubnet.id
+        laHubId: hubLaWorkspace.id
+        flowLogsStorageId: flowlogs_storageAccount.id
     }
 }
 
@@ -957,10 +957,10 @@ module flowlogsDeploymentksInScopeNodepools 'modules/flowlogsDeployment.bicep' =
     name: 'flowlogs-Deploymentks-InScopeNodepools-NSG'
     scope: networkWatcherResourceGroup
     params: {
-      location: location
-      targetResourceId: nsgAksInScopeNodepools.id
-      laHubId: hubLaWorkspace.id
-      flowLogsStorageId: flowlogs_storageAccount.id
+        location: location
+        targetResourceId: nsgAksInScopeNodepools.id
+        laHubId: hubLaWorkspace.id
+        flowLogsStorageId: flowlogs_storageAccount.id
     }
 }
 
@@ -968,10 +968,10 @@ module flowlogsDeploymentAllowSshFromHubBastionInBound 'modules/flowlogsDeployme
     name: 'flowlogs-Deployment-AllowSshFromHubBastionInBound-NSG'
     scope: networkWatcherResourceGroup
     params: {
-      location: location
-      targetResourceId: nsgAllowSshFromHubBastionInBound.id
-      laHubId: hubLaWorkspace.id
-      flowLogsStorageId: flowlogs_storageAccount.id
+        location: location
+        targetResourceId: nsgAllowSshFromHubBastionInBound.id
+        laHubId: hubLaWorkspace.id
+        flowLogsStorageId: flowlogs_storageAccount.id
     }
 }
 
@@ -979,10 +979,10 @@ module flowlogsDeploymentAksOutOfScopeNodepools 'modules/flowlogsDeployment.bice
     name: 'flowlogs-Deployment-AksOutOfScopeNodepools-NSG'
     scope: networkWatcherResourceGroup
     params: {
-      location: location
-      targetResourceId: nsgAksOutOfScopeNodepools.id
-      laHubId: hubLaWorkspace.id
-      flowLogsStorageId: flowlogs_storageAccount.id
+        location: location
+        targetResourceId: nsgAksOutOfScopeNodepools.id
+        laHubId: hubLaWorkspace.id
+        flowLogsStorageId: flowlogs_storageAccount.id
     }
 }
 
@@ -990,10 +990,10 @@ module flowlogsDeploymentAksPrivateLinkEndpoint 'modules/flowlogsDeployment.bice
     name: 'flowlogs-Deployment-AksPrivateLinkEndpoint-NSG'
     scope: networkWatcherResourceGroup
     params: {
-      location: location
-      targetResourceId: nsgAksPrivateLinkEndpoint.id
-      laHubId: hubLaWorkspace.id
-      flowLogsStorageId: flowlogs_storageAccount.id
+        location: location
+        targetResourceId: nsgAksPrivateLinkEndpoint.id
+        laHubId: hubLaWorkspace.id
+        flowLogsStorageId: flowlogs_storageAccount.id
     }
 }
 
@@ -1001,10 +1001,10 @@ module flowlogsDeploymentAksSystemNodepools 'modules/flowlogsDeployment.bicep' =
     name: 'flowlogs-Deployment-AksSystemNodepools-NSG'
     scope: networkWatcherResourceGroup
     params: {
-      location: location
-      targetResourceId: nsgAksSystemNodepools.id
-      laHubId: hubLaWorkspace.id
-      flowLogsStorageId: flowlogs_storageAccount.id
+        location: location
+        targetResourceId: nsgAksSystemNodepools.id
+        laHubId: hubLaWorkspace.id
+        flowLogsStorageId: flowlogs_storageAccount.id
     }
 }
 

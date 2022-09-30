@@ -22,7 +22,7 @@ param hubVnetResourceId string
     'westeurope'
     'japaneast'
     'southeastasia'
-  ])
+])
 @description('The spokes\'s regional affinity, must be the same as the hub\'s location. All resources tied to this spoke will also be homed in this region. The network team maintains this approved regional list which is a subset of zones with Availability Zone support.')
 param location string
 
@@ -33,15 +33,15 @@ param deployFlowLogResources bool = true
 
 @description('The resource group name containing virtual network in which the regional Azure Firewall is deployed.')
 resource rgHubs 'Microsoft.Resources/resourceGroups@2021-04-01' existing = {
-  scope: subscription()
-  name: split(hubVnetResourceId, '/')[4]
+    scope: subscription()
+    name: split(hubVnetResourceId, '/')[4]
 }
 
-@description('The regional Azure Firewall that all regional spoke networks can egress through.')
+/*@description('The regional Azure Firewall that all regional spoke networks can egress through.')
 resource hubFirewall 'Microsoft.Network/azureFirewalls@2021-05-01' existing = {
   scope: rgHubs
   name: 'fw-${location}'
-}
+}*/
 
 resource hubLaWorkspace 'Microsoft.OperationalInsights/workspaces@2021-12-01-preview' existing = {
     scope: rgHubs
@@ -68,14 +68,14 @@ resource afRouteTable 'Microsoft.Network/routeTables@2021-05-01' = {
     location: location
     properties: {
         routes: [
-            {
+            /*{
                 name: 'r-nexthop-to-fw'
                 properties: {
                     nextHopType: 'VirtualAppliance'
                     addressPrefix: '0.0.0.0/0'
                     nextHopIpAddress: hubFirewall.properties.ipConfigurations[0].properties.privateIPAddress
                 }
-            }
+            }*/
         ]
     }
 }
@@ -246,11 +246,11 @@ resource imageBuilderVNet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
                 }
             }
         ]
-        dhcpOptions: {
+        /*dhcpOptions: {
             dnsServers: [
                 hubFirewall.properties.ipConfigurations[0].properties.privateIPAddress
             ]
-        }
+        }*/
     }
 
     resource snetImageBuilder 'subnets' existing = {
@@ -277,13 +277,13 @@ resource imageBuilderVNet_diagnosticSettings 'Microsoft.Insights/diagnosticSetti
     name: 'toHub'
     scope: imageBuilderVNet
     properties: {
-      workspaceId: hubLaWorkspace.id
-      metrics: [
-        {
-          category: 'AllMetrics'
-          enabled: true
-        }
-      ]
+        workspaceId: hubLaWorkspace.id
+        metrics: [
+            {
+                category: 'AllMetrics'
+                enabled: true
+            }
+        ]
     }
 }
 
@@ -292,10 +292,10 @@ module flowlogsDeployment 'modules/flowlogsDeployment.bicep' = if (deployFlowLog
     name: 'connect-spoke-bu0001A0005-00-flowlogs'
     scope: networkWatcherResourceGroup
     params: {
-      location: location
-      targetResourceId: nsgJumpboxImgbuilderSubnet.id
-      laHubId: hubLaWorkspace.id
-      flowLogsStorageId: flowlogs_storageAccount.id
+        location: location
+        targetResourceId: nsgJumpboxImgbuilderSubnet.id
+        laHubId: hubLaWorkspace.id
+        flowLogsStorageId: flowlogs_storageAccount.id
     }
 }
 
@@ -303,9 +303,9 @@ module hubsSpokesPeering 'modules/hubsSpokesPeeringDeployment.bicep' = {
     name: 'hub-to-jumpboxVNet-peering'
     scope: rgHubs
     params: {
-      hubVNetResourceId: hubVnetResourceId
-      spokesVNetName: imageBuilderVNet.name
-      rgSpokes: resourceGroup().name
+        hubVNetResourceId: hubVnetResourceId
+        spokesVNetName: imageBuilderVNet.name
+        rgSpokes: resourceGroup().name
     }
     dependsOn: [
         imageBuilderVNetPeering
