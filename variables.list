@@ -1,0 +1,159 @@
+typeset 0=-zsh
+typeset AADOBJECTID_GROUP_CLUSTERADMIN=6265cd11-825c-4581-beed-9c0d965dbb56
+typeset AADOBJECTID_USER_CLUSTERADMIN=14df3e66-a279-48ff-a6c4-e1678c7f1946
+typeset AADOBJECTNAME_GROUP_CLUSTERADMIN=cluster-admins-bu0001a000500
+typeset AADOBJECTNAME_USER_CLUSTERADMIN=bu0001a000500-admin
+typeset ACR_NAME=acraksyeshkeqtwapem
+typeset ACR_NAME_QUARANTINE=acraksyeshkeqtwapem
+typeset APP_GATEWAY_LISTENER_CERTIFICATE_BASE64='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'
+typeset -T CDPATH cdpath=(  )
+typeset CLOUDINIT_BASE64='I2Nsb3VkLWNvbmZpZwp1c2VyczoKICAtIGRlZmF1bHQKICAtIG5hbWU6IG9wc3VzZXIwMQogICAgc3VkbzogRmFsc2UKICAgIGxvY2tfcGFzc3dkOiBUcnVlCiAgICBzc2gtYXV0aG9yaXplZC1rZXlzOgogICAgICAtIHNzaC1yc2EgQUFBQUIzTnphQzF5YzJFQUFBQURBUUFCQUFBQ0FRQzBkUXVVUjB4aHNqQmJtM290TU1JUjg4aEVMa1hreGp4T0N4UTRpS2E5Q3FPb0RZVUNsMjBRWStPdHBDbnZpRDYvVVlQcXplZS9FekkvTDNjWVJadWx3OWtNZVlHTUU0dDVjM2lEYWhVK2N6WkRQbmQwaHZTUXZLNWhhdmdBcjUxMjBDZzZzVFJuSzEwRzNreUV6OHBNU3dTcDlDWEFPRjNsMWtSSEVOcE8yanhwM0JvbVJJUWw1L0hIcklKVVhIVmdmWjN5Vnkzb1N5bWFUaUNhOEZXcS9ndEUwSFd4b25tRU5ST2RHSFZlcmNjb3RIMFQyNng0TkdUZVhyU1R0M1huN0dVRjJKODUxQ2dLKzFrbDgvUDdQZTVabTJicU5RWEViaVpXbmkrM1R0SGphQTNyRVUvYUZ1RUVWcnBlUlhqbTNHUkdnbzFjQW5lSWg5ZVI0YXptTFBRWmVTWEtka1RFK2NaZWJ0bnBVTCtoczFWNzhjRGZteWN5ZUN0UloxbHIzZ21sNzgwL3FtY3JweUNJQWdPSWF3MU53bFFVQXRyVnZ6dnBrWXpQZG1zUUFKcFVvMUxSczVjMHJYV21YREoyWjU2VzlsMXJmRjRXSVBkN0tSK0NUNlYrYmxoUHVZblpwLzUxNGRGUVBKVllpbTZSWVFmKyt6NEhTVG5HSkZhVGMrNUdzTWgvL2Qxb3hmMWMwNWFPWmxtazNmV0xXYnF4aE5kT2YrYXVsQ1l0RHl1U3JPaE9RTlp2WCtHbnNzNElzZnJ1bHZ1aVJITTd6cHhqdXJFNDhYRUxSTUVqMlpVd0wwMDQreGMveThua0g1UmZTNXV3c2hWcmhnYmw0MGtVUmZyRmlnMUYzcS9sSStqTUlDTERrSGZycXBDOXlsaXIyNCtLTDk2L05RPT0KICAtIG5hbWU6IG9wc3VzZXIwMgogICAgc3VkbzogRmFsc2UKICAgIGxvY2tfcGFzc3dkOiBUcnVlCiAgICBzc2gtYXV0aG9yaXplZC1rZXlzOgogICAgICAtIHNzaC1yc2EgQUFBQUIzTnphQzF5YzJFQUFBQURBUUFCQUFBQ0FRRExkWWtRWnFzK1JxUXdpcmpPVU1LVDBhVkp4bmpPeTlubUZuYWM3L29LaE1zTW14YUhrNjZDVWVMQkdWaUY5dHlQcXFQNlBnb2pPT1dMa095ZmsrWnQ5MXU3dmcyeHR5b2d3dE5wcjF3eE1QMnA5bVdHL2tRbllaTWs4UWpoV2xqMG9TaUxkblZxTGo0d3FkamE3STBOdGltYVVNcXVPZjJ1V1NtTE1nZVdzTWpnK2pxNE84Mmo2aW5PTmtNWEVaTFJVNVlkK1FJVzVoZVhScFQ0aEZSNkhRUjQ2bUkvOEdYWE04dUhwR1ByRkllYWFoRDNFQ2tFVDE3VEdid0orUXhOV1JWbkZ1akdxWUg5cURsOE5Oc1F3R1VsdHJmd3FSTXAzbjRveTFXQ0RNeVhEcE1NQ0hSSnFSWkNUTWdJVW8wWXc2RSsrWmhRODVzYlFTUm5tck1lSndMNUFhQTc3ekV0ODNFVEJNZzlqNU9RVWJPeHBmOHlTeGQzQVBSTlFLZlhkTHRoZVVrUjJkQmxwRTNmNWRmdlVTQWpnSmlDaEZESUtkNjE3dmR3VVhPYXQ5QU1HRE1PbC84WFdNYjJ1R2dvOE9RZE5QVy9KMnNjZ244L0VlWk1jQUFFeVpkRVBPQk9ER2IveGdXREZCQUNZQXRQL0dPc3g2MjhhYU81SDRLaGVZS3NkUHRJb3JPS2pnL3BnQWhVWFRTM0hlNllsWHdyVllSOFFwSFN4b0cyb3NZRmNXNS9iUEUzUWFITFE5MFhLS2tOOHhlUzEvUWg2KzNPK05JSGlzTU1TWHVtRWFkRVNpTDdiQTBZbFNxb0hiUG9SaDAvMzhpOGlMdFRsbGZHeXFnQXJ3VDZpaVF6cWtvZWZDYmlONk9yUGVWZTR5NEFYWlJFdXgxQVhRPT0='
+typeset -i10 COLUMNS=210
+typeset CPUTYPE=arm64
+typeset -i10 EGID=20
+typeset -i10 EUID=501
+typeset -T FIGNORE fignore=(  )
+typeset -T FPATH fpath=( /usr/local/share/zsh/site-functions /usr/share/zsh/site-functions /usr/share/zsh/5.8.1/functions )
+typeset -i10 FUNCNEST=700
+typeset -i10 GID=20
+typeset HISTCHARS='!^#'
+typeset HISTFILE=/Users/ivanbernatovic/.zsh_sessions/5C18C10B-2F5D-4480-885F-F8A6F9CAF8BD.historynew
+typeset -i10 HISTSIZE=2000
+export HOME=/Users/ivanbernatovic
+export HOMEBREW_CELLAR=/opt/homebrew/Cellar
+export HOMEBREW_PREFIX=/opt/homebrew
+export HOMEBREW_REPOSITORY=/opt/homebrew
+typeset HOST=ivanmac.local
+typeset IFS=$' \t\n\C-@'
+typeset IMAGE_TEMPLATE_NAME=imgt-aksopsjb-20220930T083909
+export INFOPATH=/opt/homebrew/share/info:
+typeset INGRESS_CONTROLLER_CERTIFICATE_BASE64='LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURBRENDQWVnQ0NRQytlUDNmRVV4SlhUQU5CZ2txaGtpRzl3MEJBUXNGQURCQ01TSXdJQVlEVlFRRERCa3EKTG1GcmN5MXBibWR5WlhOekxtTnZiblJ2YzI4dVkyOXRNUnd3R2dZRFZRUUtEQk5EYjI1MGIzTnZJRUZMVXlCSgpibWR5WlhOek1CNFhEVEl5TURrek1EQTNNamd6T1ZvWERUSXpNRGt6TURBM01qZ3pPVm93UWpFaU1DQUdBMVVFCkF3d1pLaTVoYTNNdGFXNW5jbVZ6Y3k1amIyNTBiM052TG1OdmJURWNNQm9HQTFVRUNnd1RRMjl1ZEc5emJ5QkIKUzFNZ1NXNW5jbVZ6Y3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTFNaYVNrVwpXQkFMc25RM3BlK0luL1hwSC8zSVZxOUFOMmlyRTZQYzJ3RGl2ZGFnQ0VNSFRHeE04U2l3MEdlWVkxemhLZTBmCmFxa203ajYwVHM1MGRZQ3NuVW9rTk5TUVVtd0lFRnQySUQwVXQ3TVo3L0pacVZoeXNLQmliRGlpdk9wV1hHeC8KVG1aa0lYWm4rSkdKRjg4SzZDWGtRcDhwc2dzbkVZUG9tK0twZUJkaEl3UzdHS2QvZ1IzL1lFMG9Xb0t4K04zZwpYSjl0RlVhNWVBYWQxeEFZUnVGeXRnQ2RBd3hXd1NnZEVBcmtReGZqUHorZ0dCUzMzM3VuQ0pHQmNoY1lmWlk5CitJYm1OUi9CR2p3VHRhOU5oSEs5cWlUbDl2Y2F3NTg3WXdORjU4MDIwblNMTkNuMmdhRUxha1gzT21zVE9MWksKYlR5N2FEa2RnYXV5S2tNQ0F3RUFBVEFOQmdrcWhraUc5dzBCQVFzRkFBT0NBUUVBbzcya0h5SDAxT3Z6a3hscwpnMzJ1L3dzUGNLQlUvMzRISkxKOTJBRm9wSFRzeGVvYjUyUjdIdU5FblFzTnl2ZGdoVWtzeW1DYk1LWlhJd1pGCjF3NkNiMi92TERyQndVVkptZDJ1UXN5dzVMN2xSOWsyRjRVWHJhYkQvVUNUM0xFRmhCMGpQK0JoR3k4VktiQXEKU29mYWdyVTUrOHdmR2ZYN3NtQXlBdVpsc1VJQTE4d0lMMzM3ak9HZG9zNTQwS3pYRllOWlFVLzd2QUhBZmdjUQpoQ1h2cW96a0hTRFBjcU5HSzlremh5WVRvdlh5Y2l2SU5VSG9wTGJ0amNKdW8yelNLQkgxa29XZ0N6d0hRcEREClRBYTliVEY4MW91cTJmZFo0MHQzSWV6a0tKd3hFajBWMENSRXB1OStRWElnUGorcjlOWEp4cjFNckhieTlUNisKZmZxdm13PT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo='
+typeset KEYBOARD_HACK=''
+typeset -i KEYTIMEOUT=40
+typeset KEYVAULT_NAME=kv-2-aks-yeshkeqtwapem
+export LC_CTYPE=UTF-8
+typeset -i10 LINES=88
+typeset -i LISTMAX=100
+typeset -i LOGCHECK=60
+export LOGNAME=ivanbernatovic
+export LaunchInstanceID=7F49C2DC-F7FD-42A7-A662-78D4FD72AAA3
+typeset MACHTYPE=x86_64
+typeset -i MAILCHECK=60
+typeset -T MAILPATH mailpath=(  )
+export -T MANPATH manpath=( /opt/homebrew/share/man '' '' )
+typeset MATCH=d
+typeset -i MBEGIN=1
+typeset -i MEND=1
+typeset -T MODULE_PATH module_path=( /usr/lib/zsh/5.8.1 )
+typeset NETWORK_WATCHER_RG_REGION=''
+typeset NULLCMD=cat
+export NVM_CD_FLAGS=-q
+export NVM_DIR=/Users/ivanbernatovic/.nvm
+export NVM_RC_VERSION=''
+export OLDPWD=/Users/ivanbernatovic/Projects/github/ibernato/aks-baseline-regulated/cluster-manifests
+typeset OPTARG=args
+typeset -i10 OPTIND=1
+typeset OSTYPE=darwin21.0
+export -T PATH path=( /opt/homebrew/bin /opt/homebrew/sbin /usr/local/bin /usr/bin /bin /usr/sbin /sbin /usr/local/share/dotnet '~/.dotnet/tools' /Library/Apple/usr/bin /Library/Frameworks/Mono.framework/Versions/Current/Commands /Users/ivanbernatovic/flutter/bin /Users/ivanbernatovic/.dotnet/tools )
+typeset PROMPT='%n@%m %1~ %# '
+typeset PROMPT2='%_> '
+typeset PROMPT3='?# '
+typeset PROMPT4='+%N:%i> '
+typeset PS1='%n@%m %1~ %# '
+typeset PS2='%_> '
+typeset PS3='?# '
+typeset PS4='+%N:%i> '
+typeset -T PSVAR psvar=(  )
+export PWD=/Users/ivanbernatovic/Projects/github/ibernato/aks-baseline-regulated
+typeset -i10 RANDOM=5110
+typeset READNULLCMD=more
+typeset RESOURCEID_IMAGE_JUMPBOX=/subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/rg-bu0001a0005/providers/Microsoft.Compute/images/img-aksopsjb-20220930T083909
+typeset RESOURCEID_SUBNET_AIB=/subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/rg-enterprise-networking-spokes/providers/Microsoft.Network/virtualNetworks/vnet-spoke-BU0001A0005-00/subnets/snet-imagebuilder
+typeset RESOURCEID_SUBNET_JUMPBOX=/subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/rg-enterprise-networking-spokes/providers/Microsoft.Network/virtualNetworks/vnet-spoke-BU0001A0005-01/subnets/snet-management-ops
+typeset RESOURCEID_SUBNET_NODEPOOLS='['\''/subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/rg-enterprise-networking-spokes/providers/Microsoft.Network/virtualNetworks/vnet-spoke-BU0001A0005-01/subnets/snet-cluster-systemnodepool'\'','\''/subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/rg-enterprise-networking-spokes/providers/Microsoft.Network/virtualNetworks/vnet-spoke-BU0001A0005-01/subnets/snet-cluster-inscopenodepools'\'','\''/subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/rg-enterprise-networking-spokes/providers/Microsoft.Network/virtualNetworks/vnet-spoke-BU0001A0005-01/subnets/snet-cluster-outofscopenodepools'\'']'
+typeset RESOURCEID_VNET_CLUSTERSPOKE=/subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/rg-enterprise-networking-spokes/providers/Microsoft.Network/virtualNetworks/vnet-spoke-BU0001A0005-01
+typeset RESOURCEID_VNET_HUB=/subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/rg-enterprise-networking-hubs/providers/Microsoft.Network/virtualNetworks/vnet-australiaeast-hub
+typeset ROLEID_IMGDEPLOY=2e50a794-f86b-5409-9fd0-f114a2220c03
+typeset ROLEID_NETWORKING=560d521d-58ad-56f1-8cd8-c106dc049695
+typeset -i10 SAVEHIST=1000
+typeset -i10 SECONDS=107096
+export SECURITYSESSIONID=186b2
+export SHELL=/bin/zsh
+typeset SHELL_SESSION_DID_HISTORY_CHECK=1
+typeset SHELL_SESSION_DID_INIT=1
+typeset SHELL_SESSION_DIR=/Users/ivanbernatovic/.zsh_sessions
+typeset SHELL_SESSION_FILE=/Users/ivanbernatovic/.zsh_sessions/5C18C10B-2F5D-4480-885F-F8A6F9CAF8BD.session
+typeset SHELL_SESSION_HISTFILE=/Users/ivanbernatovic/.zsh_sessions/5C18C10B-2F5D-4480-885F-F8A6F9CAF8BD.history
+typeset SHELL_SESSION_HISTFILE_NEW=/Users/ivanbernatovic/.zsh_sessions/5C18C10B-2F5D-4480-885F-F8A6F9CAF8BD.historynew
+typeset SHELL_SESSION_HISTFILE_SHARED=/Users/ivanbernatovic/.zsh_history
+typeset SHELL_SESSION_HISTORY=1
+typeset SHELL_SESSION_TIMESTAMP_FILE=/Users/ivanbernatovic/.zsh_sessions/_expiration_check_timestamp
+export -i10 SHLVL=1
+typeset SPROMPT='zsh: correct '\''%R'\'' to '\''%r'\'' [nyae]? '
+export SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.e10EjB4gqr/Listeners
+typeset TENANTDOMAIN_K8SRBAC=jlozinaicodecom.onmicrosoft.com
+typeset TENANTID_AZURERBAC=46178f77-759c-4dfc-a437-f8911ed3ce55
+typeset TENANTID_K8SRBAC=46178f77-759c-4dfc-a437-f8911ed3ce55
+export TERM=xterm-256color
+export TERM_PROGRAM=Apple_Terminal
+export TERM_PROGRAM_VERSION=445
+export TERM_SESSION_ID=5C18C10B-2F5D-4480-885F-F8A6F9CAF8BD
+typeset TIMEFMT='%J  %U user %S system %P cpu %*E total'
+export TMPDIR=/var/folders/j5/jy2rrv4x42ncf4n5bvmql2zw0000gn/T/
+typeset TMPPREFIX=/tmp/zsh
+typeset -i10 TRY_BLOCK_ERROR=-1
+typeset -i10 TRY_BLOCK_INTERRUPT=-1
+typeset TTY=/dev/ttys000
+typeset -i10 UID=501
+export USER=ivanbernatovic
+typeset USERNAME=ivanbernatovic
+typeset VENDOR=apple
+typeset -T WATCH watch=(  )
+typeset WATCHFMT='%n has %a %l from %m.'
+typeset WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
+export XPC_FLAGS=0x0
+export XPC_SERVICE_NAME=0
+typeset ZLE_LINE_ABORTED=$'KEYVAULT_NAME=$(az deployment group show --resource-group rg-bu0001a0005 -n cluster-stamp --query properties.outputs.keyVaultName.value -o tsv)\naz keyvault set-policy --certificate-permissions import --upn $(az account show --query user.name -o tsv) -n $KEYVAULT_NAME'
+typeset ZSH_ARGZERO=-zsh
+typeset ZSH_NAME=zsh
+typeset ZSH_PATCHLEVEL=zsh-5.8.1-0-g1a490c7
+typeset ZSH_VERSION=5.8.1
+typeset _=-p
+export __CFBundleIdentifier=com.apple.Terminal
+typeset -A _cmd_variant=( [cat]=unix )
+typeset -aU _comp_assocs=( '' )
+typeset _comp_dumpfile=/Users/ivanbernatovic/.zcompdump
+typeset -a _comp_options
+typeset _comp_setup
+typeset -A _compautos
+typeset -A _comps
+typeset -A _lastcomp
+typeset -A _patcomps
+typeset -A _postpatcomps
+typeset -A _services
+typeset -A aliases
+typeset -a argv=(  )
+typeset -aT CDPATH cdpath=(  )
+typeset -A commands
+typeset -a comppostfuncs=(  )
+typeset -a compprefuncs=(  )
+typeset -aT FIGNORE fignore=(  )
+typeset -aT FPATH fpath=( /usr/local/share/zsh/site-functions /usr/share/zsh/site-functions /usr/share/zsh/5.8.1/functions )
+typeset -A functions
+typeset histchars='!^#'
+typeset -A key=( [Backspace]=$'\C-H' [Delete]=$'\C-[[3~' [Down]=$'\C-[OB' [End]=$'\C-[OF' [F1]=$'\C-[OP' [F10]=$'\C-[[21~' [F11]=$'\C-[[23~' [F12]=$'\C-[[24~' [F13]=$'\C-[[1;2P' [F14]=$'\C-[[1;2Q' [F15]=$'\C-[[1;2R' [F16]=$'\C-[[1;2S' [F17]=$'\C-[[15;2~' [F18]=$'\C-[[17;2~' [F19]=$'\C-[[18;2~' [F2]=$'\C-[OQ' [F20]=$'\C-[[19;2~' [F3]=$'\C-[OR' [F4]=$'\C-[OS' [F5]=$'\C-[[15~' [F6]=$'\C-[[17~' [F7]=$'\C-[[18~' [F8]=$'\C-[[19~' [F9]=$'\C-[[20~' [Home]=$'\C-[OH' [Insert]=$'\C-[[2~' [Left]=$'\C-[OD' [PageDown]=$'\C-[[6~' [PageUp]=$'\C-[[5~' [Right]=$'\C-[OC' [Up]=$'\C-[OA' )
+typeset -aT MAILPATH mailpath=(  )
+typeset -aT MANPATH manpath=( /opt/homebrew/share/man '' '' )
+typeset -aT MODULE_PATH module_path=( /usr/lib/zsh/5.8.1 )
+typeset -A options
+typeset -aT PATH path=( /opt/homebrew/bin /opt/homebrew/sbin /usr/local/bin /usr/bin /bin /usr/sbin /sbin /usr/local/share/dotnet '~/.dotnet/tools' /Library/Apple/usr/bin /Library/Frameworks/Mono.framework/Versions/Current/Commands /Users/ivanbernatovic/flutter/bin /Users/ivanbernatovic/.dotnet/tools )
+typeset -a pipestatus=( 0 )
+typeset -a precmd_functions=( update_terminal_cwd )
+typeset prompt='%n@%m %1~ %# '
+typeset -aT PSVAR psvar=(  )
+typeset -A saliases
+typeset -a signals=( EXIT HUP INT QUIT ILL TRAP ABRT EMT FPE KILL BUS SEGV SYS PIPE ALRM TERM URG STOP TSTP CONT CHLD TTIN TTOU IO XCPU XFSZ VTALRM PROF WINCH INFO USR1 USR2 ZERR DEBUG )
+typeset -Ar terminfo
+typeset -aT WATCH watch=(  )
+typeset -a zle_bracketed_paste=( $'\C-[[?2004h' $'\C-[[?2004l' )
+typeset -a zshexit_functions=( shell_session_update )

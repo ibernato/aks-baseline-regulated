@@ -130,7 +130,7 @@
         "apwResourceId": "[resourceId('Microsoft.Network/applicationGateways', variables('agwName'))]",
         "jumpBoxDefaultAdminUserName": "[uniqueString(variables('clusterName'), resourceGroup().id)]",
         "clusterControlPlaneIdentityName": "[concat('mi-', variables('clusterName'), '-controlplane')]",
-        "keyVaultName": "[concat('kv-2-', variables('clusterName'))]",
+        "keyVaultName": "[concat('kv-3-', variables('clusterName'))]",
         "policyResourceIdAKSLinuxRestrictive": "/providers/Microsoft.Authorization/policySetDefinitions/42b8ef37-b724-4e24-bbc8-7a7708edfe00",
         "policyResourceIdEnforceHttpsIngress": "/providers/Microsoft.Authorization/policyDefinitions/1a5b4dca-0b6f-4cf5-907c-56316bc1bf3d",
         "policyResourceIdEnforceInternalLoadBalancers": "/providers/Microsoft.Authorization/policyDefinitions/3fc4dc25-5baf-40d8-9b05-7fe74c1bc64e",
@@ -483,52 +483,52 @@
                 }
             ]
         },
-        {
-            "type": "Microsoft.Network/privateEndpoints",
-            "apiVersion": "2020-11-01",
-            "name": "[concat('pe-', variables('defaultAcrName'))]",
-            "location": "[parameters('location')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.ContainerRegistry/registries/replications', variables('defaultAcrName'), parameters('geoRedundancyLocation'))]"
-            ],
-            "properties": {
-                "subnet": {
-                    "id": "[variables('vnetPrivateLinkSubnetResourceId')]"
-                },
-                "privateLinkServiceConnections": [
-                    {
-                        "name": "[concat('to-', variables('vnetName'))]",
-                        "properties": {
-                            "privateLinkServiceId": "[resourceId('Microsoft.ContainerRegistry/registries', variables('defaultAcrName'))]",
-                            "groupIds": [
-                                "registry"
-                            ]
-                        }
-                    }
-                ]
-            },
-            "resources": [
-                {
-                    "type": "privateDnsZoneGroups",
-                    "apiVersion": "2020-11-01",
-                    "name": "[concat('for-', variables('defaultAcrName'))]",
-                    "location": "[parameters('location')]",
-                    "dependsOn": [
-                        "[resourceId('Microsoft.Network/privateEndpoints', concat('pe-', variables('defaultAcrName')))]"
-                    ],
-                    "properties": {
-                        "privateDnsZoneConfigs": [
-                            {
-                                "name": "privatelink-azurecr-io",
-                                "properties": {
-                                    "privateDnsZoneId": "[resourceId(variables('vNetResourceGroup'), 'Microsoft.Network/privateDnsZones', 'privatelink.azurecr.io')]"
-                                }
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
+        // {
+        //     "type": "Microsoft.Network/privateEndpoints",
+        //     "apiVersion": "2020-11-01",
+        //     "name": "[concat('pe-', variables('defaultAcrName'))]",
+        //     "location": "[parameters('location')]",
+        //     "dependsOn": [
+        //         "[resourceId('Microsoft.ContainerRegistry/registries/replications', variables('defaultAcrName'), parameters('geoRedundancyLocation'))]"
+        //     ],
+        //     "properties": {
+        //         "subnet": {
+        //             "id": "[variables('vnetPrivateLinkSubnetResourceId')]"
+        //         },
+        //         "privateLinkServiceConnections": [
+        //             {
+        //                 "name": "[concat('to-', variables('vnetName'))]",
+        //                 "properties": {
+        //                     "privateLinkServiceId": "[resourceId('Microsoft.ContainerRegistry/registries', variables('defaultAcrName'))]",
+        //                     "groupIds": [
+        //                         "registry"
+        //                     ]
+        //                 }
+        //             }
+        //         ]
+        //     },
+        //     "resources": [
+        //         {
+        //             "type": "privateDnsZoneGroups",
+        //             "apiVersion": "2020-11-01",
+        //             "name": "[concat('for-', variables('defaultAcrName'))]",
+        //             "location": "[parameters('location')]",
+        //             "dependsOn": [
+        //                 "[resourceId('Microsoft.Network/privateEndpoints', concat('pe-', variables('defaultAcrName')))]"
+        //             ],
+        //             "properties": {
+        //                 "privateDnsZoneConfigs": [
+        //                     {
+        //                         "name": "privatelink-azurecr-io",
+        //                         "properties": {
+        //                             "privateDnsZoneId": "[resourceId(variables('vNetResourceGroup'), 'Microsoft.Network/privateDnsZones', 'privatelink.azurecr.io')]"
+        //                         }
+        //                     }
+        //                 ]
+        //             }
+        //         }
+        //     ]
+        // },
         {
             "type": "Microsoft.Network/applicationGateways",
             "apiVersion": "2020-11-01",
@@ -1115,35 +1115,35 @@
             "name": "[variables('defaultAcrName')]",
             "location": "[parameters('location')]",
             "sku": {
-                "name": "Premium"
+                "name": "Basic"
             },
             "properties": {
-                "adminUserEnabled": false,
-                "networkRuleSet": {
-                    "defaultAction": "Deny",
-                    "virtualNetworkRules": [],
-                    "ipRules": []
-                },
-                "policies": {
-                    "quarantinePolicy": {
-                        "status": "disabled"
-                    },
-                    "trustPolicy": {
-                        "type": "Notary",
-                        "status": "enabled"
-                    },
-                    "retentionPolicy": {
-                        "days": 15,
-                        "status": "enabled"
-                    }
-                },
-                "publicNetworkAccess": "Disabled",
-                "encryption": {
-                    "status": "disabled"
-                },
-                "dataEndpointEnabled": true,
-                "networkRuleBypassOptions": "AzureServices",
-                "zoneRedundancy": "Disabled" // This Preview feature only supports three regions at this time, and eastus2's paired region (centralus), does not support this. So disabling for now.
+                // "adminUserEnabled": false,
+                // "networkRuleSet": {
+                //     "defaultAction": "Deny",
+                //     "virtualNetworkRules": [],
+                //     "ipRules": []
+                // },
+                // "policies": {
+                //     "quarantinePolicy": {
+                //         "status": "disabled"
+                //     },
+                //     "trustPolicy": {
+                //         "type": "Notary",
+                //         "status": "enabled"
+                //     },
+                //     "retentionPolicy": {
+                //         "days": 15,
+                //         "status": "enabled"
+                //     }
+                // },
+                // //"publicNetworkAccess": "Disabled",
+                // "encryption": {
+                //     "status": "disabled"
+                // },
+                // "dataEndpointEnabled": true,
+                // "networkRuleBypassOptions": "AzureServices",
+                // "zoneRedundancy": "Disabled" // This Preview feature only supports three regions at this time, and eastus2's paired region (centralus), does not support this. So disabling for now.
             },
             "resources": [
                 {
@@ -1161,16 +1161,16 @@
                         "principalType": "ServicePrincipal"
                     }
                 },
-                {
-                    "type": "replications",
-                    "apiVersion": "2019-05-01",
-                    "name": "[parameters('geoRedundancyLocation')]",
-                    "location": "[parameters('geoRedundancyLocation')]",
-                    "dependsOn": [
-                        "[resourceId('Microsoft.ContainerRegistry/registries', variables('defaultAcrName'))]"
-                    ],
-                    "properties": {}
-                },
+                // {
+                //     "type": "replications",
+                //     "apiVersion": "2019-05-01",
+                //     "name": "[parameters('geoRedundancyLocation')]",
+                //     "location": "[parameters('geoRedundancyLocation')]",
+                //     "dependsOn": [
+                //         "[resourceId('Microsoft.ContainerRegistry/registries', variables('defaultAcrName'))]"
+                //     ],
+                //     "properties": {}
+                // },
                 // {
                 //     "type": "agentPools",
                 //     "apiVersion": "2019-06-01-preview",
@@ -1259,8 +1259,8 @@
                         "name": "npsystem",
                         "count": 1,
                         "vmSize": "Standard_B2s",
-                        "osDiskSizeGB": 120,
-                        "osDiskType": "Managed",
+                        "osDiskSizeGB": 30,
+                        "osDiskType": "Ephemeral",
                         "osType": "Linux",
                         "minCount": 1,
                         "maxCount": 4,
@@ -1295,8 +1295,8 @@
                         "name": "npinscope01",
                         "count": 1,
                         "vmSize": "Standard_B2s",
-                        "osDiskSizeGB": 120,
-                        "osDiskType": "Managed",
+                        "osDiskSizeGB": 30,
+                        "osDiskType": "Ephemeral",
                         "osType": "Linux",
                         "minCount": 1,
                         "maxCount": 5,
@@ -1331,8 +1331,8 @@
                         "name": "npooscope01",
                         "count": 1,
                         "vmSize": "Standard_B2s",
-                        "osDiskSizeGB": 120,
-                        "osDiskType": "Managed",
+                        "osDiskSizeGB": 30,
+                        "osDiskType": "Ephemeral",
                         "osType": "Linux",
                         "minCount": 1,
                         "maxCount": 5,
