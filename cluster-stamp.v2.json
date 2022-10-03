@@ -848,7 +848,7 @@
                 "sku": {
                     "name": "PerGB2018"
                 },
-                "retentionInDays": 90,
+                "retentionInDays": 30,
                 "publicNetworkAccessForIngestion": "Enabled",
                 "publicNetworkAccessForQuery": "Enabled"
             },
@@ -1258,8 +1258,8 @@
                     {
                         "name": "npsystem",
                         "count": 1,
-                        "vmSize": "Standard_B2s",
-                        "osDiskSizeGB": 30,
+                        "vmSize": "Standard_B2ms",
+                        "osDiskSizeGB": 60,
                         "osDiskType": "Ephemeral",
                         "osType": "Linux",
                         "minCount": 1,
@@ -1294,11 +1294,11 @@
                     {
                         "name": "npinscope01",
                         "count": 1,
-                        "vmSize": "Standard_B2s",
-                        "osDiskSizeGB": 30,
+                        "vmSize": "Standard_B2ms",
+                        "osDiskSizeGB": 60,
                         "osDiskType": "Ephemeral",
                         "osType": "Linux",
-                        "minCount": 1,
+                        "minCount": 3,
                         "maxCount": 5,
                         "vnetSubnetID": "[variables('vnetInScopeNodePoolSubnetResourceId')]",
                         "enableAutoScaling": true,
@@ -1330,11 +1330,11 @@
                     {
                         "name": "npooscope01",
                         "count": 1,
-                        "vmSize": "Standard_B2s",
-                        "osDiskSizeGB": 30,
+                        "vmSize": "Standard_B2ms",
+                        "osDiskSizeGB": 60,
                         "osDiskType": "Ephemeral",
                         "osType": "Linux",
-                        "minCount": 1,
+                        "minCount": 2,
                         "maxCount": 5,
                         "vnetSubnetID": "[variables('vnetOutOfScopeNodePoolSubnetResourceId')]",
                         "enableAutoScaling": true,
