@@ -10,7 +10,7 @@ spec:
       secret:
         name: osm-nginx-client-cert
         namespace: kube-system
-      subjectAltNames: 
+      subjectAltNames:
         - ingress-nginx.ingress-nginx.cluster.local
       validityDuration: 24h
     serviceCertValidityDuration: 24h
@@ -37,5 +37,4 @@ spec:
     outboundIPRangeExclusionList:
       - 169.254.169.254/32
       - 168.63.129.16/32
-      - 10.240.12.4/32
-
+      - 30.240.12.4/32
