@@ -17,14 +17,14 @@ Now that the [hub-spoke network is provisioned](./08-cluster-networking.md), the
 1. Get the already-deployed, virtual network resource ID that this cluster will be attached to.
 
    ```bash
-   RESOURCEID_VNET_CLUSTERSPOKE=$(az deployment group show -g rg-enterprise-networking-spokes -n spoke-BU0001A0005-01 --query properties.outputs.clusterVnetResourceId.value -o tsv)
+   RESOURCEID_VNET_CLUSTERSPOKE=$(az deployment group show -g rg-production-networking-spokes -n spoke-BU0001A0005-01 --query properties.outputs.clusterVnetResourceId.value -o tsv)
    ```
 
 1. Identify your jump box image.
 
    ```bash
    # If you used a pre-existing image and not the one built by this walk through, replace the command below with the resource id of that image.
-   RESOURCEID_IMAGE_JUMPBOX=$(az deployment group show -g rg-bu0001a0005 -n CreateJumpBoxImageTemplate --query 'properties.outputs.distributedImageResourceId.value' -o tsv)
+   RESOURCEID_IMAGE_JUMPBOX=$(az deployment group show -g rg-production -n CreateJumpBoxImageTemplate --query 'properties.outputs.distributedImageResourceId.value' -o tsv)
    ```
 
 1. Convert your jump box cloud-init (users) file to Base64.
@@ -45,10 +45,10 @@ Now that the [hub-spoke network is provisioned](./08-cluster-networking.md), the
 
    ```bash
    # [This takes about 20 minutes to run.]
-   az deployment group create -g rg-bu0001a0005 -f cluster-stamp.json -p targetVnetResourceId=${RESOURCEID_VNET_CLUSTERSPOKE} clusterAdminAadGroupObjectId=${AADOBJECTID_GROUP_CLUSTERADMIN} k8sControlPlaneAuthorizationTenantId=${TENANTID_K8SRBAC} appGatewayListenerCertificate=${APP_GATEWAY_LISTENER_CERTIFICATE_BASE64} aksIngressControllerCertificate=${INGRESS_CONTROLLER_CERTIFICATE_BASE64} jumpBoxImageResourceId=${RESOURCEID_IMAGE_JUMPBOX} jumpBoxCloudInitAsBase64=${CLOUDINIT_BASE64}
+   az deployment group create -g rg-production -f cluster-stamp.json -p targetVnetResourceId=${RESOURCEID_VNET_CLUSTERSPOKE} clusterAdminAadGroupObjectId=${AADOBJECTID_GROUP_CLUSTERADMIN} k8sControlPlaneAuthorizationTenantId=${TENANTID_K8SRBAC} appGatewayListenerCertificate=${APP_GATEWAY_LISTENER_CERTIFICATE_BASE64} aksIngressControllerCertificate=${INGRESS_CONTROLLER_CERTIFICATE_BASE64} jumpBoxImageResourceId=${RESOURCEID_IMAGE_JUMPBOX} jumpBoxCloudInitAsBase64=${CLOUDINIT_BASE64}
 
    # Or if you updated and wish to use the parameters file …
-   #az deployment group create -g rg-bu0001a0005 -f cluster-stamp.json -p "@azuredeploy.parameters.prod.json"
+   #az deployment group create -g rg-production -f cluster-stamp.json -p "@azuredeploy.parameters.prod.json"
    ```
 
 1. Update cluster deployment with managed identity assignments.
@@ -59,10 +59,10 @@ Now that the [hub-spoke network is provisioned](./08-cluster-networking.md), the
 
    ```bash
    # [This takes about five minutes to run.]
-   az deployment group create -g rg-bu0001a0005 -f cluster-stamp.v2.json -p targetVnetResourceId=${RESOURCEID_VNET_CLUSTERSPOKE} clusterAdminAadGroupObjectId=${AADOBJECTID_GROUP_CLUSTERADMIN} k8sControlPlaneAuthorizationTenantId=${TENANTID_K8SRBAC} appGatewayListenerCertificate=${APP_GATEWAY_LISTENER_CERTIFICATE_BASE64} aksIngressControllerCertificate=${AKS_INGRESS_CONTROLLER_CERTIFICATE_BASE64} jumpBoxImageResourceId=${RESOURCEID_IMAGE_JUMPBOX} jumpBoxCloudInitAsBase64=${CLOUDINIT_BASE64}
+   az deployment group create -g rg-production -f cluster-stamp.v2.json -p targetVnetResourceId=${RESOURCEID_VNET_CLUSTERSPOKE} clusterAdminAadGroupObjectId=${AADOBJECTID_GROUP_CLUSTERADMIN} k8sControlPlaneAuthorizationTenantId=${TENANTID_K8SRBAC} appGatewayListenerCertificate=${APP_GATEWAY_LISTENER_CERTIFICATE_BASE64} aksIngressControllerCertificate=${AKS_INGRESS_CONTROLLER_CERTIFICATE_BASE64} jumpBoxImageResourceId=${RESOURCEID_IMAGE_JUMPBOX} jumpBoxCloudInitAsBase64=${CLOUDINIT_BASE64}
 
    # Or if you used the parameters file …
-   #az deployment group create -g rg-bu0001a0005 -f cluster-stamp.v2.json -p "@azuredeploy.parameters.prod.json"
+   #az deployment group create -g rg-production -f cluster-stamp.v2.json -p "@azuredeploy.parameters.prod.json"
    ```
 
 ## Import the wildcard certificate for the AKS ingress controller to Azure Key Vault
@@ -74,7 +74,7 @@ Once web traffic hits Azure Application Gateway, public-facing TLS is terminated
 1. Give your user temporary permissions to import certificates into Key Vault.
 
    ```bash
-   KEYVAULT_NAME=$(az deployment group show --resource-group rg-bu0001a0005 -n cluster-stamp --query properties.outputs.keyVaultName.value -o tsv)
+   KEYVAULT_NAME=$(az deployment group show --resource-group rg-production -n cluster-stamp --query properties.outputs.keyVaultName.value -o tsv)
    az keyvault set-policy --certificate-permissions import --upn $(az account show --query user.name -o tsv) -n $KEYVAULT_NAME
    ```
 

@@ -10,7 +10,7 @@ Egressing your spoke traffic through a hub network (following the hub-spoke mode
 
 ## Expected results
 
-After executing these steps you'll have the `rg-enterprise-networking-hubs` resource group populated with a regional virtual network (vnet), Azure Firewall, Azure Bastion, and Azure Monitor & Flow Log storage for network observability. No spokes will have been created yet, so the default firewall rules are maximally restrictive, as there is no expected outflow of traffic so none is allowed. We'll open up access on an as-needed bases throughout this walk through.
+After executing these steps you'll have the `rg-production-networking-hubs` resource group populated with a regional virtual network (vnet), Azure Firewall, Azure Bastion, and Azure Monitor & Flow Log storage for network observability. No spokes will have been created yet, so the default firewall rules are maximally restrictive, as there is no expected outflow of traffic so none is allowed. We'll open up access on an as-needed bases throughout this walk through.
 
 Specifically, you'll see networking/hub-region.v​_n_.bicep referenced a couple times in this process. Think of this as an evolution of a _single_ ARM template as the number and needs of the connected spokes change over time. You can diff the v​_n_ and v​_n+1_ ARM templates to see this progression over time. Typically your network team would have encapsulated this hub in a file named something like `hub-eastus2.bicep` and updated it in their source control as dependencies/requirements dictate. It likely would have not taken as many parameters as either, as those would be constants that could be easily defined directly in the template as the file would be specific to the region's spokes. To keep this reference implementation more flexible on what region you select, you'll be asked to provide deployment parameters and the filename can remain the generic name of hub-​_region_.
 
@@ -29,12 +29,12 @@ Since this walkthrough is expected to be deployed isolated from existing infrast
 
    ```bash
    # [This takes about eight minutes to run.]
-   az deployment group create -g rg-enterprise-networking-hubs -f networking/hub-region.v0.bicep -p location=australiaeast
+   az deployment group create -g rg-production-networking-hubs -f networking/hub-region.v0.bicep -p location=australiaeast
    ```
 
    The hub deployment will output the following:
 
-      * `hubVnetId` - which you'll query in future steps when creating connected regional spokes. E.g. `/subscriptions/[subscription id]/resourceGroups/rg-enterprise-networking-hubs/providers/Microsoft.Network/virtualNetworks/vnet-eastus2-hub`
+      * `hubVnetId` - which you'll query in future steps when creating connected regional spokes. E.g. `/subscriptions/[subscription id]/resourceGroups/rg-production-networking-hubs/providers/Microsoft.Network/virtualNetworks/vnet-eastus2-hub`
 
 ### Next step
 

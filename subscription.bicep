@@ -26,7 +26,7 @@ param networkWatcherRGRegion string = ''
 /*** VARIABLES ***/
 
 @description('This region is used as the default for all generic resource groups and for any additional deployment resources. No resources are actually deployed to this resource group.')
-var deploymentResourceRegion = 'centralus' 
+var deploymentResourceRegion = 'centralus'
 
 /*** EXISTING RESOURCES ***/
 
@@ -39,19 +39,19 @@ resource securityAdminRole 'Microsoft.Authorization/roleDefinitions@2018-01-01-p
 
 @description('This contains all of our regional hubs. Typically this would be found in your enterprise\'s Connectivity subscription.')
 resource rgHubs 'Microsoft.Resources/resourceGroups@2021-04-01' = {
-    name: 'rg-enterprise-networking-hubs'
+    name: 'rg-production-networking-hubs'
     location: deploymentResourceRegion
 }
 
 @description('This contains all of our regional spokes. Typically this would be found in your enterprise\'s Connectivity subscription or in the workload\'s subscription.')
 resource rgSpokes 'Microsoft.Resources/resourceGroups@2021-04-01' = {
-    name: 'rg-enterprise-networking-spokes'
+    name: 'rg-production-networking-spokes'
     location: deploymentResourceRegion
 }
 
 @description('This is the resource group for BU001A0005. Typically this would be found in your workload\'s subscription.')
-resource rgbu0001a0005 'Microsoft.Resources/resourceGroups@2021-04-01'  = {
-    name: 'rg-bu0001a0005'
+resource rgbu0001a0005 'Microsoft.Resources/resourceGroups@2021-04-01' = {
+    name: 'rg-production'
     location: deploymentResourceRegion
 }
 

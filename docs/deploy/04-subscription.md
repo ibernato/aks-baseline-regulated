@@ -14,9 +14,9 @@ The following three resource groups will be created in the steps below.
 
 | Name                            | Purpose                                   |
 |---------------------------------|-------------------------------------------|
-| rg-enterprise-networking-hubs   | Contains all of your organization's regional hubs. A regional hub resources in this implementation include an the hub Virtual Network, egress firewall, Azure Bastion, and Log Analytics for network logging. They may also contain your VPN Gateways, which are not addressed in this implementation. |
-| rg-enterprise-networking-spokes | Contains all of your organization's regional spokes and related networking resources. All spokes will peer with their regional hub and subnets will egress through the regional firewall in the hub. |
-| rg-bu0001a0005                  | Contains the regulated cluster resources. |
+| rg-production-networking-hubs   | Contains all of your organization's regional hubs. A regional hub resources in this implementation include an the hub Virtual Network, egress firewall, Azure Bastion, and Log Analytics for network logging. They may also contain your VPN Gateways, which are not addressed in this implementation. |
+| rg-production-networking-spokes | Contains all of your organization's regional spokes and related networking resources. All spokes will peer with their regional hub and subnets will egress through the regional firewall in the hub. |
+| rg-production                  | Contains the regulated cluster resources. |
 | networkWatcherRG                | Contains regional Network Watchers. _(Most subscriptions already have this.)_ |
 
 Both Azure Kubernetes Service and Azure Image Builder Service use a concept of a dynamically-created _infrastructure_ resource group. So in addition to the four resource groups mentioned above, as you follow these instructions, you'll end up with six resource groups; two of which are automatically created and their lifecycle tied to their owning service. You will not see these two infrastructure resource groups get created until later in the walkthrough when their owning service is created.
@@ -28,21 +28,21 @@ To help govern our resources, there are policies we apply over the scope of thes
 | Policy Name                    | Scope                           | Purpose                                                                                           |
 |--------------------------------|---------------------------------|---------------------------------------------------------------------------------------------------|
 | Enable Microsoft Defender Standard | Subscription                | Ensures that Microsoft Defender for Containers, DNS, Key Vault, and Resource Manager are always enabled. |
-| Allowed resource types         | rg-enterprise-networking-hubs   | Restricts the hub resource group to just relevant networking resources.                           |
-| VNet must have Network Watcher | rg-enterprise-networking-hubs   | Audit policy that will trigger if a network is deployed to a region that doesn't have a Network Watcher. _(This is only created if your subscription doesn't already have Network Watchers in place.)_ |
-| Allowed resource types         | rg-enterprise-networking-spokes | Restricts the spokes resource group to just relevant networking resources.                        |
-| VNet must have Network Watcher | rg-enterprise-networking-spokes | Audit policy that will trigger if a network is deployed to a region that doesn't have a Network Watcher. _(This is only created if your subscription doesn't already have Network Watchers in place.)_ |
-| Allowed resource types         | rg-bu0001a0005                  | Restricts the workload resource group to just resources necessary for this specific architecture. |
+| Allowed resource types         | rg-production-networking-hubs   | Restricts the hub resource group to just relevant networking resources.                           |
+| VNet must have Network Watcher | rg-production-networking-hubs   | Audit policy that will trigger if a network is deployed to a region that doesn't have a Network Watcher. _(This is only created if your subscription doesn't already have Network Watchers in place.)_ |
+| Allowed resource types         | rg-production-networking-spokes | Restricts the spokes resource group to just relevant networking resources.                        |
+| VNet must have Network Watcher | rg-production-networking-spokes | Audit policy that will trigger if a network is deployed to a region that doesn't have a Network Watcher. _(This is only created if your subscription doesn't already have Network Watchers in place.)_ |
+| Allowed resource types         | rg-production                  | Restricts the workload resource group to just resources necessary for this specific architecture. |
 | Allowed resource types         | networkWatcherRG                | Restricts the Network Watcher resource group to just Network Watcher resources. _(Audit only mode to prevent conflict with any existing policy that manages this common resource group.)_ |
-| No public AKS clusters         | rg-bu0001a0005                  | Restricts the creation of AKS clusters to only those with private Kubernetes API server.   |
-| No out-of-date AKS clusters    | rg-bu0001a0005                  | Restricts the creation of AKS clusters to only recent versions.                            |
-| No AKS clusters without RBAC   | rg-bu0001a0005                  | Restricts the creation of AKS clusters to only those that are Azure AD RBAC enabled.       |
-| No AKS clusters without Azure Policy | rg-bu0001a0005            | Restricts the creation of AKS clusters to only those that have the Azure Policy Add-on enabled.   |
-| No AKS clusters without BYOK OS & Data Disk Encryption | rg-bu0001a0005  | Restricts the creation of AKS clusters to only those that have customer-managed disk encryption enabled. (_This is in audit only mode, as not all customers may wish to do this._) |
-| No AKS clusters without encryption-at-host | rg-bu0001a0005      | Restricts the creation of AKS clusters to only those that have the Encryption-At-Host feature enabled. (_This is in audit only mode, as not all customers may wish to do this._) |
-| No AKS clusters without Microsoft Defender for Containers | rg-bu0001a0005                | Restricts the creation of AKS clusters to only those that have the Microsoft Defender for Containers feature enabled. |
-| No App Gateways without WAF    | rg-bu0001a0005                  | Restricts the creation of Azure Application Gateway to only the WAF SKU. |
-| No VMSS with public IPs        | rg-bu0001a0005                  | Only VMSS that do not have public IPs can be created in this resource group. |
+| No public AKS clusters         | rg-production                  | Restricts the creation of AKS clusters to only those with private Kubernetes API server.   |
+| No out-of-date AKS clusters    | rg-production                  | Restricts the creation of AKS clusters to only recent versions.                            |
+| No AKS clusters without RBAC   | rg-production                  | Restricts the creation of AKS clusters to only those that are Azure AD RBAC enabled.       |
+| No AKS clusters without Azure Policy | rg-production            | Restricts the creation of AKS clusters to only those that have the Azure Policy Add-on enabled.   |
+| No AKS clusters without BYOK OS & Data Disk Encryption | rg-production  | Restricts the creation of AKS clusters to only those that have customer-managed disk encryption enabled. (_This is in audit only mode, as not all customers may wish to do this._) |
+| No AKS clusters without encryption-at-host | rg-production      | Restricts the creation of AKS clusters to only those that have the Encryption-At-Host feature enabled. (_This is in audit only mode, as not all customers may wish to do this._) |
+| No AKS clusters without Microsoft Defender for Containers | rg-production                | Restricts the creation of AKS clusters to only those that have the Microsoft Defender for Containers feature enabled. |
+| No App Gateways without WAF    | rg-production                  | Restricts the creation of Azure Application Gateway to only the WAF SKU. |
+| No VMSS with public IPs        | rg-production                  | Only VMSS that do not have public IPs can be created in this resource group. |
 
 For this reference implementation, our Azure Policies applied to these resource groups are maximally restrictive on what resource types are allowed to be deployed and what features they must have enabled/disable. If you alter the deployment by adding additional Azure resources, you may need to update the _Allowed resource types_ policy for that resource group to accommodate your modification.
 

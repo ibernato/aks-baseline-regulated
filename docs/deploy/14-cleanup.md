@@ -15,9 +15,9 @@ After you are done exploring your deployed [AKS Baseline Cluster for Regulated W
    :warning: Ensure you are using the correct subscription, and validate that the only resources that exist in these groups are ones you're okay deleting.
 
    ```bash
-   az group delete -n rg-bu0001a0005
-   az group delete -n rg-enterprise-networking-spokes
-   az group delete -n rg-enterprise-networking-hubs
+   az group delete -n rg-production
+   az group delete -n rg-production-networking-spokes
+   az group delete -n rg-production-networking-hubs
    ```
 
    Depending on your subscription's starting point, this walkthrough might have also deployed a resource group by the name of `networkWatcherRG`. If you know this to be the case, and wish to remove it as well, you can execute `az group delete -n networkWatcherRG`. If you are not sure, you can leave that resource group in place, the resources deployed as part of this walkthrough to that resource group are not cost or security impacting.
@@ -37,9 +37,9 @@ After you are done exploring your deployed [AKS Baseline Cluster for Regulated W
    Execute the following commands will handle all Resource Group-scoped policies:
 
    ```bash
-   for p in $(az policy assignment list --disable-scope-strict-match --query "[?resourceGroup=='rg-bu0001a0005'].name" -o tsv); do az policy assignment delete -n ${p} -g rg-bu0001a0005; done
-   for p in $(az policy assignment list --disable-scope-strict-match --query "[?resourceGroup=='rg-enterprise-networking-spokes'].name" -o tsv); do az policy assignment delete -n ${p} -g rg-enterprise-networking-spokes; done
-   for p in $(az policy assignment list --disable-scope-strict-match --query "[?resourceGroup=='rg-enterprise-networking-hubs'].name" -o tsv); do az policy assignment delete -n ${p} -g rg-enterprise-networking-hubs; done
+   for p in $(az policy assignment list --disable-scope-strict-match --query "[?resourceGroup=='rg-production'].name" -o tsv); do az policy assignment delete -n ${p} -g rg-production; done
+   for p in $(az policy assignment list --disable-scope-strict-match --query "[?resourceGroup=='rg-production-networking-spokes'].name" -o tsv); do az policy assignment delete -n ${p} -g rg-production-networking-spokes; done
+   for p in $(az policy assignment list --disable-scope-strict-match --query "[?resourceGroup=='rg-production-networking-hubs'].name" -o tsv); do az policy assignment delete -n ${p} -g rg-production-networking-hubs; done
    ```
 
 1. Remove _custom_ Azure Policy definitions.

@@ -67,12 +67,12 @@ typeset -T PSVAR psvar=(  )
 export PWD=/Users/ivanbernatovic/Projects/github/ibernato/aks-baseline-regulated
 typeset -i10 RANDOM=5110
 typeset READNULLCMD=more
-typeset RESOURCEID_IMAGE_JUMPBOX=/subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/rg-bu0001a0005/providers/Microsoft.Compute/images/img-aksopsjb-20220930T083909
-typeset RESOURCEID_SUBNET_AIB=/subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/rg-enterprise-networking-spokes/providers/Microsoft.Network/virtualNetworks/vnet-spoke-BU0001A0005-00/subnets/snet-imagebuilder
-typeset RESOURCEID_SUBNET_JUMPBOX=/subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/rg-enterprise-networking-spokes/providers/Microsoft.Network/virtualNetworks/vnet-spoke-BU0001A0005-01/subnets/snet-management-ops
-typeset RESOURCEID_SUBNET_NODEPOOLS='['\''/subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/rg-enterprise-networking-spokes/providers/Microsoft.Network/virtualNetworks/vnet-spoke-BU0001A0005-01/subnets/snet-cluster-systemnodepool'\'','\''/subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/rg-enterprise-networking-spokes/providers/Microsoft.Network/virtualNetworks/vnet-spoke-BU0001A0005-01/subnets/snet-cluster-inscopenodepools'\'','\''/subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/rg-enterprise-networking-spokes/providers/Microsoft.Network/virtualNetworks/vnet-spoke-BU0001A0005-01/subnets/snet-cluster-outofscopenodepools'\'']'
-typeset RESOURCEID_VNET_CLUSTERSPOKE=/subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/rg-enterprise-networking-spokes/providers/Microsoft.Network/virtualNetworks/vnet-spoke-BU0001A0005-01
-typeset RESOURCEID_VNET_HUB=/subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/rg-enterprise-networking-hubs/providers/Microsoft.Network/virtualNetworks/vnet-australiaeast-hub
+typeset RESOURCEID_IMAGE_JUMPBOX=/subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/rg-production/providers/Microsoft.Compute/images/img-aksopsjb-20220930T083909
+typeset RESOURCEID_SUBNET_AIB=/subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/rg-production-networking-spokes/providers/Microsoft.Network/virtualNetworks/vnet-spoke-BU0001A0005-00/subnets/snet-imagebuilder
+typeset RESOURCEID_SUBNET_JUMPBOX=/subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/rg-production-networking-spokes/providers/Microsoft.Network/virtualNetworks/vnet-spoke-BU0001A0005-01/subnets/snet-management-ops
+typeset RESOURCEID_SUBNET_NODEPOOLS='['\''/subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/rg-production-networking-spokes/providers/Microsoft.Network/virtualNetworks/vnet-spoke-BU0001A0005-01/subnets/snet-cluster-systemnodepool'\'','\''/subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/rg-production-networking-spokes/providers/Microsoft.Network/virtualNetworks/vnet-spoke-BU0001A0005-01/subnets/snet-cluster-inscopenodepools'\'','\''/subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/rg-production-networking-spokes/providers/Microsoft.Network/virtualNetworks/vnet-spoke-BU0001A0005-01/subnets/snet-cluster-outofscopenodepools'\'']'
+typeset RESOURCEID_VNET_CLUSTERSPOKE=/subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/rg-production-networking-spokes/providers/Microsoft.Network/virtualNetworks/vnet-spoke-BU0001A0005-01
+typeset RESOURCEID_VNET_HUB=/subscriptions/b24e0c92-2cb6-41ab-8c8c-22c92dfe4192/resourceGroups/rg-production-networking-hubs/providers/Microsoft.Network/virtualNetworks/vnet-australiaeast-hub
 typeset ROLEID_IMGDEPLOY=2e50a794-f86b-5409-9fd0-f114a2220c03
 typeset ROLEID_NETWORKING=560d521d-58ad-56f1-8cd8-c106dc049695
 typeset -i10 SAVEHIST=1000
@@ -113,7 +113,7 @@ typeset WATCHFMT='%n has %a %l from %m.'
 typeset WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
 export XPC_FLAGS=0x0
 export XPC_SERVICE_NAME=0
-typeset ZLE_LINE_ABORTED=$'KEYVAULT_NAME=$(az deployment group show --resource-group rg-bu0001a0005 -n cluster-stamp --query properties.outputs.keyVaultName.value -o tsv)\naz keyvault set-policy --certificate-permissions import --upn $(az account show --query user.name -o tsv) -n $KEYVAULT_NAME'
+typeset ZLE_LINE_ABORTED=$'KEYVAULT_NAME=$(az deployment group show --resource-group rg-production -n cluster-stamp --query properties.outputs.keyVaultName.value -o tsv)\naz keyvault set-policy --certificate-permissions import --upn $(az account show --query user.name -o tsv) -n $KEYVAULT_NAME'
 typeset ZSH_ARGZERO=-zsh
 typeset ZSH_NAME=zsh
 typeset ZSH_PATCHLEVEL=zsh-5.8.1-0-g1a490c7

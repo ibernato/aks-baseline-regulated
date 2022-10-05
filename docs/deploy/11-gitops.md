@@ -44,7 +44,7 @@ In the AKS Baseline, the cluster is [bootstrapped using the Flux AKS extension](
    You'll be using the [Secrets Store CSI Driver for Kubernetes](https://learn.microsoft.com/azure/aks/csi-secrets-store-driver) to mount the ingress controller's certificate which you stored in Azure Key Vault. Once mounted, your ingress controller will be able to use it. To make the CSI Provider aware of this certificate, it must be described in a `SecretProviderClass` resource. You'll update the supplied manifest file with this information now.
 
    ```bash
-   KEYVAULT_NAME=$(az deployment group show --resource-group rg-bu0001a0005 -n cluster-stamp --query properties.outputs.keyVaultName.value -o tsv)
+   KEYVAULT_NAME=$(az deployment group show --resource-group rg-production -n cluster-stamp --query properties.outputs.keyVaultName.value -o tsv)
 
    sed -i -e "s/KEYVAULT_NAME/${KEYVAULT_NAME}/" -e "s/KEYVAULT_TENANT/${TENANTID_AZURERBAC}/" ingress-nginx/akv-tls-provider.yaml
 
@@ -63,7 +63,7 @@ In the AKS Baseline, the cluster is [bootstrapped using the Flux AKS extension](
    If this is the first time you've used Azure Bastion, here is a detailed walk through of this process.
 
    1. Open the [Azure Portal](https://portal.azure.com).
-   1. Navigate to the **rg-bu0001a0005** resource group.
+   1. Navigate to the **rg-production** resource group.
    1. Click on the Virtual Machine Scale Set resource named **vmss-jumpboxes**.
    1. Click **Instances**.
    1. Click the name of any of the two listed instances. E.g. **vmss-jumpboxes_0**
@@ -98,9 +98,9 @@ In the AKS Baseline, the cluster is [bootstrapped using the Flux AKS extension](
 1. _From your Azure Bastion connection_, get your AKS credentials and set your `kubectl` context to your cluster.
 
    ```bash
-   AKS_CLUSTER_NAME=$(az deployment group show -g rg-bu0001a0005 -n cluster-stamp --query properties.outputs.aksClusterName.value -o tsv)
+   AKS_CLUSTER_NAME=$(az deployment group show -g rg-production -n cluster-stamp --query properties.outputs.aksClusterName.value -o tsv)
 
-   az aks get-credentials -g rg-bu0001a0005 -n $AKS_CLUSTER_NAME
+   az aks get-credentials -g rg-production -n $AKS_CLUSTER_NAME
    ```
 
 1. _From your Azure Bastion connection_, test cluster access and authenticate as a cluster admin user.
