@@ -1115,35 +1115,35 @@
             "name": "[variables('defaultAcrName')]",
             "location": "[parameters('location')]",
             "sku": {
-                "name": "Basic"
+                "name": "Premium"
             },
             "properties": {
-                // "adminUserEnabled": false,
-                // "networkRuleSet": {
-                //     "defaultAction": "Deny",
-                //     "virtualNetworkRules": [],
-                //     "ipRules": []
-                // },
-                // "policies": {
-                //     "quarantinePolicy": {
-                //         "status": "disabled"
-                //     },
-                //     "trustPolicy": {
-                //         "type": "Notary",
-                //         "status": "enabled"
-                //     },
-                //     "retentionPolicy": {
-                //         "days": 15,
-                //         "status": "enabled"
-                //     }
-                // },
-                // //"publicNetworkAccess": "Disabled",
-                // "encryption": {
-                //     "status": "disabled"
-                // },
-                // "dataEndpointEnabled": true,
-                // "networkRuleBypassOptions": "AzureServices",
-                // "zoneRedundancy": "Disabled" // This Preview feature only supports three regions at this time, and eastus2's paired region (centralus), does not support this. So disabling for now.
+                "adminUserEnabled": false,
+                "networkRuleSet": {
+                    "defaultAction": "Deny",
+                    "virtualNetworkRules": [],
+                    "ipRules": []
+                },
+                "policies": {
+                    "quarantinePolicy": {
+                        "status": "disabled"
+                    },
+                    "trustPolicy": {
+                        "type": "Notary",
+                        "status": "enabled"
+                    },
+                    "retentionPolicy": {
+                        "days": 15,
+                        "status": "enabled"
+                    }
+                },
+                "publicNetworkAccess": "Disabled",
+                "encryption": {
+                    "status": "disabled"
+                },
+                "dataEndpointEnabled": true,
+                "networkRuleBypassOptions": "AzureServices",
+                "zoneRedundancy": "Disabled" // This Preview feature only supports three regions at this time, and eastus2's paired region (centralus), does not support this. So disabling for now.
             },
             "resources": [
                 {
@@ -1161,16 +1161,16 @@
                         "principalType": "ServicePrincipal"
                     }
                 },
-                // {
-                //     "type": "replications",
-                //     "apiVersion": "2019-05-01",
-                //     "name": "[parameters('geoRedundancyLocation')]",
-                //     "location": "[parameters('geoRedundancyLocation')]",
-                //     "dependsOn": [
-                //         "[resourceId('Microsoft.ContainerRegistry/registries', variables('defaultAcrName'))]"
-                //     ],
-                //     "properties": {}
-                // },
+                {
+                    "type": "replications",
+                    "apiVersion": "2019-05-01",
+                    "name": "[parameters('geoRedundancyLocation')]",
+                    "location": "[parameters('geoRedundancyLocation')]",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.ContainerRegistry/registries', variables('defaultAcrName'))]"
+                    ],
+                    "properties": {}
+                },
                 // {
                 //     "type": "agentPools",
                 //     "apiVersion": "2019-06-01-preview",
