@@ -4,7 +4,7 @@ In the prior step, you [procured TLS certificates](./02-ca-certificates.md) for 
 
 ## Nomenclature
 
-We are giving this cluster a generic identifier that we'll use to build relationships between various resources. We'll assume that _Business Unit 0001_ is building a regulated workload identified internally as _App ID 0005_ in their service tree. To that end, you will see references to `bu0001a0005` throughout the rest of this implementation. Naming conventions are an important organization technique for your resources. For your final implementation, please use what is appropriate for your team/organization.
+We are giving this cluster a generic identifier that we'll use to build relationships between various resources. We'll assume that _Business Unit 0001_ is building a regulated workload identified internally as _App ID 0005_ in their service tree. To that end, you will see references to `production` throughout the rest of this implementation. Naming conventions are an important organization technique for your resources. For your final implementation, please use what is appropriate for your team/organization.
 
 ## Azure AD tenant selection
 
@@ -41,8 +41,8 @@ Following the steps below will result in an Azure AD configuration that will be 
    > :warning: This cluster role is the highest-privileged role available in Kubernetes. Members of this group will have _complete access throughout the cluster_. Generally speaking, there should be **no standing access** at this level; and access is [implemented using Just-In-Time AD group membership](https://learn.microsoft.com/azure/aks/managed-aad#configure-just-in-time-cluster-access-with-azure-ad-and-aks) (_Requires Azure AD PIM found in Premium P2 SKU._). In the next step, you'll create a dedicated account for this highly-privileged, administrative role for this walkthrough. Ensure your all of your cluster's RBAC assignments and memberships are maliciously managed and auditable; aligning to minimal or no standing admin permissions and all other organization & compliance requirements.
 
    ```bash
-   AADOBJECTNAME_GROUP_CLUSTERADMIN=cluster-admins-bu0001a000500
-   AADOBJECTID_GROUP_CLUSTERADMIN=$(az ad group create --display-name $AADOBJECTNAME_GROUP_CLUSTERADMIN --mail-nickname $AADOBJECTNAME_GROUP_CLUSTERADMIN --description "Principals in this group are cluster admins in the bu0001a000500 cluster." --query id -o tsv)
+   AADOBJECTNAME_GROUP_CLUSTERADMIN=cluster-admins-production
+   AADOBJECTID_GROUP_CLUSTERADMIN=$(az ad group create --display-name $AADOBJECTNAME_GROUP_CLUSTERADMIN --mail-nickname $AADOBJECTNAME_GROUP_CLUSTERADMIN --description "Principals in this group are cluster admins in the production cluster." --query id -o tsv)
    ```
 
 1. Create a "break-glass" cluster administrator user for your AKS cluster.
@@ -51,7 +51,7 @@ Following the steps below will result in an Azure AD configuration that will be 
 
    ```bash
    TENANTDOMAIN_K8SRBAC=$(az ad signed-in-user show --query 'userPrincipalName' -o tsv | cut -d '@' -f 2 | sed 's/\"//')
-   AADOBJECTNAME_USER_CLUSTERADMIN=bu0001a000500-admin
+   AADOBJECTNAME_USER_CLUSTERADMIN=production-admin
    AADOBJECTID_USER_CLUSTERADMIN=$(az ad user create --display-name=${AADOBJECTNAME_USER_CLUSTERADMIN} --user-principal-name ${AADOBJECTNAME_USER_CLUSTERADMIN}@${TENANTDOMAIN_K8SRBAC} --force-change-password-next-sign-in --password ChangeMebu0001a0005AdminChangeMe --query id -o tsv)
    ```
 
