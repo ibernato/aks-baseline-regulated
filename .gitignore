@@ -7,3 +7,5 @@
 sp.json
 
 # jumpbox/**/*.bicep
+
+deployment/
