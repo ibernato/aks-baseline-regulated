@@ -7,8 +7,8 @@ metadata:
 spec:
   interval: 1m
   ref:
-    branch: main
-  url: https://github.com/REPLACE_ME_WITH_YOUR_GITHUBACCOUNTNAME/aks-baseline-regulated
+    branch: production
+  url: https://github.com/ibernato/aks-baseline-regulated
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
