@@ -227,14 +227,14 @@ resource imageBuilderVNet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
     properties: {
         addressSpace: {
             addressPrefixes: [
-                '30.241.0.0/28'
+                '10.141.0.0/28'
             ]
         }
         subnets: [
             {
                 name: 'snet-imagebuilder'
                 properties: {
-                    addressPrefix: '30.241.0.0/28'
+                    addressPrefix: '10.141.0.0/28'
                     routeTable: {
                         id: afRouteTable.id
                     }

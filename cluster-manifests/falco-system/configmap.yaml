@@ -727,7 +727,7 @@ data:
 
     # RFC1918 addresses were assigned for private network usage
     - list: rfc_1918_addresses
-      items: ['"30.0.0.0/8"', '"172.16.0.0/12"', '"192.168.0.0/16"']
+      items: ['"10.0.0.0/8"', '"172.16.0.0/12"', '"192.168.0.0/16"']
 
     - macro: outbound
       condition: >
@@ -808,7 +808,7 @@ data:
       items: ['"127.0.0.1"']
 
     - list: allowed_inbound_source_networks
-      items: ['"127.0.0.1/8"', '"30.0.0.0/8"']
+      items: ['"127.0.0.1/8"', '"10.0.0.0/8"']
 
     - list: allowed_inbound_source_domains
       items: [google.com]

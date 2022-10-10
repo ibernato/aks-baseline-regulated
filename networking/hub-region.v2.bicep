@@ -37,22 +37,22 @@ param location string = 'australiaeast'
 @description('A /24 to contain the regional firewall, management, and gateway subnet')
 @minLength(10)
 @maxLength(18)
-param hubVnetAddressSpace string = '30.200.0.0/24'
+param hubVnetAddressSpace string = '10.100.0.0/24'
 
 @description('A /26 under the VNet Address Space for the regional Azure Firewall')
 @minLength(10)
 @maxLength(18)
-param azureFirewallSubnetAddressSpace string = '30.200.0.0/26'
+param azureFirewallSubnetAddressSpace string = '10.100.0.0/26'
 
 @description('A /27 under the VNet Address Space for our regional On-Prem Gateway')
 @minLength(10)
 @maxLength(18)
-param azureGatewaySubnetAddressSpace string = '30.200.0.64/27'
+param azureGatewaySubnetAddressSpace string = '10.100.0.64/27'
 
 @description('A /27 under the VNet Address Space for regional Azure Bastion')
 @minLength(10)
 @maxLength(18)
-param azureBastionSubnetAddressSpace string = '30.200.0.96/27'
+param azureBastionSubnetAddressSpace string = '10.100.0.96/27'
 
 @description('Flow Logs are enabled by default, if for some reason they cause conflicts with flow log policies already in place in your subscription, you can disable them by passing "false" to this parameter.')
 param deployFlowLogResources bool = true

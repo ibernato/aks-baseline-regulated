@@ -613,14 +613,14 @@ resource clusterVNet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
     properties: {
         addressSpace: {
             addressPrefixes: [
-                '30.240.0.0/16'
+                '10.140.0.0/16'
             ]
         }
         subnets: [
             {
                 name: 'snet-cluster-systemnodepool'
                 properties: {
-                    addressPrefix: '30.240.8.0/22'
+                    addressPrefix: '10.140.8.0/22'
                     routeTable: {
                         id: afRouteTable.id
                     }
@@ -634,7 +634,7 @@ resource clusterVNet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
             {
                 name: 'snet-cluster-inscopenodepools'
                 properties: {
-                    addressPrefix: '30.240.12.0/22'
+                    addressPrefix: '10.140.12.0/22'
                     networkSecurityGroup: {
                         id: nsgAksInScopeNodepools.id
                     }
@@ -648,7 +648,7 @@ resource clusterVNet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
             {
                 name: 'snet-cluster-outofscopenodepools'
                 properties: {
-                    addressPrefix: '30.240.16.0/22'
+                    addressPrefix: '10.140.16.0/22'
                     networkSecurityGroup: {
                         id: nsgAksOutOfScopeNodepools.id
                     }
@@ -662,7 +662,7 @@ resource clusterVNet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
             {
                 name: 'snet-cluster-ingressservices'
                 properties: {
-                    addressPrefix: '30.240.4.0/28'
+                    addressPrefix: '10.140.4.0/28'
                     networkSecurityGroup: {
                         id: nsgAksDefaultILBSubnet.id
                     }
@@ -673,7 +673,7 @@ resource clusterVNet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
             {
                 name: 'snet-applicationgateway'
                 properties: {
-                    addressPrefix: '30.240.5.0/24'
+                    addressPrefix: '10.140.5.0/24'
                     networkSecurityGroup: {
                         id: nsgAppGatewaySubnet.id
                     }
@@ -684,7 +684,7 @@ resource clusterVNet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
             {
                 name: 'snet-management-ops'
                 properties: {
-                    addressPrefix: '30.240.1.0/28'
+                    addressPrefix: '10.140.1.0/28'
                     routeTable: {
                         id: afRouteTable.id
                     }
@@ -698,7 +698,7 @@ resource clusterVNet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
             {
                 name: 'snet-management-agents'
                 properties: {
-                    addressPrefix: '30.240.2.0/26'
+                    addressPrefix: '10.140.2.0/26'
                     routeTable: {
                         id: afRouteTable.id
                     }
@@ -712,7 +712,7 @@ resource clusterVNet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
             {
                 name: 'snet-management-acragents'
                 properties: {
-                    addressPrefix: '30.240.251.0/28'
+                    addressPrefix: '10.140.251.0/28'
                     routeTable: {
                         id: afRouteTable.id
                     }
@@ -726,7 +726,7 @@ resource clusterVNet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
             {
                 name: 'snet-privatelinkendpoints'
                 properties: {
-                    addressPrefix: '30.240.250.0/28'
+                    addressPrefix: '10.140.250.0/28'
                     routeTable: {
                         id: afRouteTable.id
                     }
