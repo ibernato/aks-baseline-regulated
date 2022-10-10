@@ -10,7 +10,7 @@ The regional spoke network in which your cluster is laid into acts as the first 
 
 Your `rg-production-networking-spokes` will be populated with the dedicated regional spoke network in which your cluster (and its direct adjacent resources will be connected to). This spoke will have limited Internet exposure and will support Network Security Groups (NSGs) at various levels to further limit network traffic as necessary.
 
-* The network spoke will be called `vnet-spoke-bu0001a0005-01` and have a range of `30.240.0.0/16`.
+* The network spoke will be called `vnet-spoke-bu0001a0005-01` and have a range of `10.140.0.0/16`.
 * The spoke is broken into multiple subnets, each with a clearly defined purpose, appropriate IP range, and maximally restrictive NSG.
 * DNS will be forwarded to the hub to support firewall inspection/logging and to support more complex network considerations such as DNS forwarders to your organization's DNS servers.
 * The hub's firewall will be updated to allow only the necessary outbound traffic from this spoke's specific resource, management, and workload needs.

@@ -26,7 +26,7 @@ In all cases, you'll likely be building a "golden image" (container or VM image)
 
 You are going to be using Azure Image Builder to generate a Kubernetes-specific jump box image. The image construction will be performed in a dedicated network spoke with limited Internet exposure. These steps below will deploy a new dedicated image-building spoke, connected through our hub to sequester network traffic throughout the process. It will then deploy an image template and all infrastructure components for Azure Image Builder to operate. Finally you will build an image to use for your jump box.
 
-* The network spoke will be called `vnet-spoke-bu0001a0005-00` and have a range of `30.241.0.0/28`.
+* The network spoke will be called `vnet-spoke-bu0001a0005-00` and have a range of `10.141.0.0/28`.
 * The hub's firewall will be updated to allow only the necessary outbound traffic from this spoke to complete the operation.
 * The final image will be placed into the workload's resource group.
 

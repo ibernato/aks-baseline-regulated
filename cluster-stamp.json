@@ -656,7 +656,7 @@
                             "backendAddresses": [
                                 {
                                     /* This is the IP address that our ingress controller will request */
-                                    "ipAddress": "30.240.4.4"
+                                    "ipAddress": "10.140.4.4"
                                 }
                             ]
                         }
