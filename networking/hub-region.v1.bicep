@@ -353,25 +353,25 @@ resource vnetHub_diagnosticSettings 'Microsoft.Insights/diagnosticSettings@2021-
   }
 }
 
-@description('Allocate three public IP addresses to the firewall')
-var numFirewallIpAddressesToAssign = 3
-resource pipsAzureFirewall 'Microsoft.Network/publicIPAddresses@2021-05-01' = [for i in range(0, numFirewallIpAddressesToAssign): {
-  name: 'pip-fw-${location}-${padLeft(i, 2, '0')}'
-  location: location
-  sku: {
-    name: 'Standard'
-  }
-  zones: [
-    '1'
-    '2'
-    '3'
-  ]
-  properties: {
-    publicIPAllocationMethod: 'Static'
-    idleTimeoutInMinutes: 4
-    publicIPAddressVersion: 'IPv4'
-  }
-}]
+// @description('Allocate three public IP addresses to the firewall')
+// var numFirewallIpAddressesToAssign = 3
+// resource pipsAzureFirewall 'Microsoft.Network/publicIPAddresses@2021-05-01' = [for i in range(0, numFirewallIpAddressesToAssign): {
+//   name: 'pip-fw-${location}-${padLeft(i, 2, '0')}'
+//   location: location
+//   sku: {
+//     name: 'Standard'
+//   }
+//   zones: [
+//     '1'
+//     '2'
+//     '3'
+//   ]
+//   properties: {
+//     publicIPAllocationMethod: 'Static'
+//     idleTimeoutInMinutes: 4
+//     publicIPAddressVersion: 'IPv4'
+//   }
+// }]
 
 @description('The public IP for the regional hub\'s Azure Bastion service.')
 resource pipAzureBastion 'Microsoft.Network/publicIPAddresses@2021-05-01' = {
