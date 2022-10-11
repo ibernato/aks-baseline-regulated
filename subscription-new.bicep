@@ -50,7 +50,7 @@ resource rgSpokes 'Microsoft.Resources/resourceGroups@2021-04-01' = {
 }
 
 @description('This is the resource group for BU001A0005. Typically this would be found in your workload\'s subscription.')
-resource rgbu0001a0005 'Microsoft.Resources/resourceGroups@2021-04-01' = {
+resource rgproduction 'Microsoft.Resources/resourceGroups@2021-04-01' = {
     name: 'rg-production'
     location: deploymentResourceRegion
 }
@@ -423,8 +423,8 @@ module workloadPoliciesDeployment 'modules/workloadPoliciesDeployment.bicep' = {
         pdNoPublicIPsForVMScaleSets
         pdDenyAagWithoutWaf
     ]
-    name: 'Apply-${rgbu0001a0005.name}-Policies'
-    scope: rgbu0001a0005
+    name: 'Apply-${rgproduction.name}-Policies'
+    scope: rgproduction
 }
 
 @description('Ensures that Microsoft Defender for Kuberentes Service, Container Service, and Key Vault are enabled. - Policy Assignment')

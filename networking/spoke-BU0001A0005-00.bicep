@@ -82,7 +82,7 @@ resource afRouteTable 'Microsoft.Network/routeTables@2021-05-01' = {
 
 @description('NSG on the jumpbox image builder subnet.')
 resource nsgJumpboxImgbuilderSubnet 'Microsoft.Network/networkSecurityGroups@2021-05-01' = {
-    name: 'nsg-vnet-spoke-BU0001A0005-00-imageBuilder'
+    name: 'nsg-vnet-spoke-production-00-imageBuilder'
     location: location
     properties: {
         securityRules: [
@@ -222,7 +222,7 @@ resource nsgJumpboxImgbuilderSubnet_diagnosticSettings 'Microsoft.Insights/diagn
 
 @description('This vnet is used exclusively for jumpbox image builds.')
 resource imageBuilderVNet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
-    name: 'vnet-spoke-BU0001A0005-00'
+    name: 'vnet-spoke-production-00'
     location: location
     properties: {
         addressSpace: {
@@ -289,7 +289,7 @@ resource imageBuilderVNet_diagnosticSettings 'Microsoft.Insights/diagnosticSetti
 
 @description('Flow Logs deployment')
 module flowlogsDeployment 'modules/flowlogsDeployment.bicep' = if (deployFlowLogResources) {
-    name: 'connect-spoke-bu0001A0005-00-flowlogs'
+    name: 'connect-spoke-production-00-flowlogs'
     scope: networkWatcherResourceGroup
     params: {
         location: location

@@ -4,7 +4,7 @@ The first foundational networking component, the regional hub, [has been deploye
 
 ## Planning access to your cluster's control plane
 
-Your cluster's control plane (Kubernetes API Server) will not be accessible to the Internet as the cluster you'll deploy is a Private Cluster. This is one of the largest differences between this reference implementation and the general purpose [AKS Baseline reference implementation](https://github.com/mspnp/aks-secure-baseline), which has its cluster control plane Internet-facing (relying on identity as the parameter, just like your Azure resource management control plane is). In order to perform Kubernetes management operations against the cluster, you'll need to access the Kubernetes API Server from a designated subnet (`snet-management-ops` in the cluster's virtual network `vnet-spoke-BU0001A0005-01` in this implementation). You have options on how to go about originating your ops traffic from this specific subnet.
+Your cluster's control plane (Kubernetes API Server) will not be accessible to the Internet as the cluster you'll deploy is a Private Cluster. This is one of the largest differences between this reference implementation and the general purpose [AKS Baseline reference implementation](https://github.com/mspnp/aks-secure-baseline), which has its cluster control plane Internet-facing (relying on identity as the parameter, just like your Azure resource management control plane is). In order to perform Kubernetes management operations against the cluster, you'll need to access the Kubernetes API Server from a designated subnet (`snet-management-ops` in the cluster's virtual network `vnet-spoke-production-01` in this implementation). You have options on how to go about originating your ops traffic from this specific subnet.
 
 * You could establish a VPN connection to that subnet such that you source an IP from that subnet. This would allow you to manage the cluster from any place that you can establish the VPN connection from.
 * You could use Azure Shell's feature that [allows Azure Shell to be subnet-connected](https://learn.microsoft.com/azure/cloud-shell/private-vnet).
@@ -26,7 +26,7 @@ In all cases, you'll likely be building a "golden image" (container or VM image)
 
 You are going to be using Azure Image Builder to generate a Kubernetes-specific jump box image. The image construction will be performed in a dedicated network spoke with limited Internet exposure. These steps below will deploy a new dedicated image-building spoke, connected through our hub to sequester network traffic throughout the process. It will then deploy an image template and all infrastructure components for Azure Image Builder to operate. Finally you will build an image to use for your jump box.
 
-* The network spoke will be called `vnet-spoke-bu0001a0005-00` and have a range of `10.141.0.0/28`.
+* The network spoke will be called `vnet-spoke-production-00` and have a range of `10.141.0.0/28`.
 * The hub's firewall will be updated to allow only the necessary outbound traffic from this spoke to complete the operation.
 * The final image will be placed into the workload's resource group.
 
@@ -40,7 +40,7 @@ You are going to be using Azure Image Builder to generate a Kubernetes-specific 
    RESOURCEID_VNET_HUB=$(az deployment group show -g rg-production-networking-hubs -n hub-region.v0 --query properties.outputs.hubVnetId.value -o tsv)
 
    # [This takes about one minute to run.]
-   az deployment group create -g rg-production-networking-spokes -f networking/spoke-BU0001A0005-00.bicep -p location=australiaeast hubVnetResourceId="${RESOURCEID_VNET_HUB}"
+   az deployment group create -g rg-production-networking-spokes -f networking/spoke-production-00.bicep -p location=australiaeast hubVnetResourceId="${RESOURCEID_VNET_HUB}"
    ```
 
 1. Update the regional hub deployment to account for the requirements of the spoke.
@@ -50,7 +50,7 @@ You are going to be using Azure Image Builder to generate a Kubernetes-specific 
    > :eyes: If you're curious to see what changed in the regional hub, [view the diff](https://diffviewer.azureedge.net/?l=https://raw.githubusercontent.com/mspnp/aks-baseline-regulated/main/networking/hub-region.v0.bicep&r=https://raw.githubusercontent.com/mspnp/aks-baseline-regulated/main/networking/hub-region.v1.bicep).
 
    ```bash
-   RESOURCEID_SUBNET_AIB=$(az deployment group show -g rg-production-networking-spokes -n spoke-BU0001A0005-00 --query properties.outputs.imageBuilderSubnetResourceId.value -o tsv)
+   RESOURCEID_SUBNET_AIB=$(az deployment group show -g rg-production-networking-spokes -n spoke-production-00 --query properties.outputs.imageBuilderSubnetResourceId.value -o tsv)
 
    # [This takes about five minutes to run.]
    az deployment group create -g rg-production-networking-hubs -f networking/hub-region.v1.bicep -p location=australiaeast aksImageBuilderSubnetResourceId="${RESOURCEID_SUBNET_AIB}"

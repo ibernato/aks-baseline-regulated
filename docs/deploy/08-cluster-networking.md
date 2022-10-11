@@ -10,7 +10,7 @@ The regional spoke network in which your cluster is laid into acts as the first 
 
 Your `rg-production-networking-spokes` will be populated with the dedicated regional spoke network in which your cluster (and its direct adjacent resources will be connected to). This spoke will have limited Internet exposure and will support Network Security Groups (NSGs) at various levels to further limit network traffic as necessary.
 
-* The network spoke will be called `vnet-spoke-bu0001a0005-01` and have a range of `10.140.0.0/16`.
+* The network spoke will be called `vnet-spoke-production-01` and have a range of `10.140.0.0/16`.
 * The spoke is broken into multiple subnets, each with a clearly defined purpose, appropriate IP range, and maximally restrictive NSG.
 * DNS will be forwarded to the hub to support firewall inspection/logging and to support more complex network considerations such as DNS forwarders to your organization's DNS servers.
 * The hub's firewall will be updated to allow only the necessary outbound traffic from this spoke's specific resource, management, and workload needs.
@@ -23,7 +23,7 @@ Your `rg-production-networking-spokes` will be populated with the dedicated regi
    RESOURCEID_VNET_HUB=$(az deployment group show -g rg-production-networking-hubs -n hub-region.v0 --query properties.outputs.hubVnetId.value -o tsv)
 
    # [This takes about five minutes to run.]
-   az deployment group create -g rg-production-networking-spokes -f networking/spoke-BU0001A0005-01.bicep -p location=australiaeast hubVnetResourceId="${RESOURCEID_VNET_HUB}"
+   az deployment group create -g rg-production-networking-spokes -f networking/spoke-production-01.bicep -p location=australiaeast hubVnetResourceId="${RESOURCEID_VNET_HUB}"
    ```
 
 1. Update the regional hub deployment to account for the runtime requirements of the virtual network.
@@ -33,9 +33,9 @@ Your `rg-production-networking-spokes` will be populated with the dedicated regi
    > :eyes: If you're curious to see what changed in the regional hub, [view the diff](https://diffviewer.azureedge.net/?l=https://raw.githubusercontent.com/mspnp/aks-baseline-regulated/main/networking/hub-region.v1.bicep&r=https://raw.githubusercontent.com/mspnp/aks-baseline-regulated/main/networking/hub-region.v2.bicep).
 
    ```bash
-   RESOURCEID_SUBNET_AIB=$(az deployment group show -g rg-production-networking-spokes -n spoke-BU0001A0005-00 --query properties.outputs.imageBuilderSubnetResourceId.value -o tsv)
-   RESOURCEID_SUBNET_NODEPOOLS="['$(az deployment group show -g rg-production-networking-spokes -n spoke-BU0001A0005-01 --query "properties.outputs.nodepoolSubnetResourceIds.value | join ('\',\'',@)" -o tsv)']"
-   RESOURCEID_SUBNET_JUMPBOX=$(az deployment group show -g rg-production-networking-spokes -n spoke-BU0001A0005-01 --query properties.outputs.jumpboxSubnetResourceId.value -o tsv)
+   RESOURCEID_SUBNET_AIB=$(az deployment group show -g rg-production-networking-spokes -n spoke-production-00 --query properties.outputs.imageBuilderSubnetResourceId.value -o tsv)
+   RESOURCEID_SUBNET_NODEPOOLS="['$(az deployment group show -g rg-production-networking-spokes -n spoke-production-01 --query "properties.outputs.nodepoolSubnetResourceIds.value | join ('\',\'',@)" -o tsv)']"
+   RESOURCEID_SUBNET_JUMPBOX=$(az deployment group show -g rg-production-networking-spokes -n spoke-production-01 --query properties.outputs.jumpboxSubnetResourceId.value -o tsv)
 
    # [This takes about seven minutes to run.]
    az deployment group create -g rg-production-networking-hubs -f networking/hub-region.v2.bicep -p location=australiaeast aksImageBuilderSubnetResourceId="${RESOURCEID_SUBNET_AIB}" nodepoolSubnetResourceIds="${RESOURCEID_SUBNET_NODEPOOLS}" aksJumpboxSubnetResourceId="${RESOURCEID_SUBNET_JUMPBOX}"

@@ -19,19 +19,19 @@ metadata:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 spec:
   tls:
-  - hosts:
-    - bu0001a0005-00.aks-ingress.contoso.com
+    - hosts:
+        - production-00.aks-ingress.contoso.com
   rules:
-  - host: bu0001a0005-00.aks-ingress.contoso.com
-    http:
-      paths:
-      - path: /.*
-        pathType: Prefix
-        backend:
-          service:
-            name: web-frontend
-            port:
-              number: 8080
+    - host: production-00.aks-ingress.contoso.com
+      http:
+        paths:
+          - path: /.*
+            pathType: Prefix
+            backend:
+              service:
+                name: web-frontend
+                port:
+                  number: 8080
 ---
 apiVersion: policy.openservicemesh.io/v1alpha1
 kind: IngressBackend
@@ -43,15 +43,15 @@ metadata:
     pci-scope: in-scope
 spec:
   backends:
-  - name: web-frontend
-    port:
-      number: 8080
-      protocol: https
-    tls:
-      skipClientCertValidation: false
+    - name: web-frontend
+      port:
+        number: 8080
+        protocol: https
+      tls:
+        skipClientCertValidation: false
   sources:
-  - kind: Service
-    name: ingress-nginx-controller
-    namespace: ingress-nginx
-  - kind: AuthenticatedPrincipal
-    name: ingress-nginx.ingress-nginx.cluster.local
+    - kind: Service
+      name: ingress-nginx-controller
+      namespace: ingress-nginx
+    - kind: AuthenticatedPrincipal
+      name: ingress-nginx.ingress-nginx.cluster.local

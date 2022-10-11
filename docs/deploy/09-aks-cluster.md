@@ -17,7 +17,7 @@ Now that the [hub-spoke network is provisioned](./08-cluster-networking.md), the
 1. Get the already-deployed, virtual network resource ID that this cluster will be attached to.
 
    ```bash
-   RESOURCEID_VNET_CLUSTERSPOKE=$(az deployment group show -g rg-production-networking-spokes -n spoke-BU0001A0005-01 --query properties.outputs.clusterVnetResourceId.value -o tsv)
+   RESOURCEID_VNET_CLUSTERSPOKE=$(az deployment group show -g rg-production-networking-spokes -n spoke-production-01 --query properties.outputs.clusterVnetResourceId.value -o tsv)
    ```
 
 1. Identify your jump box image.

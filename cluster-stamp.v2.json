@@ -241,7 +241,7 @@
                     "networkProfile": {
                         "networkInterfaceConfigurations": [
                             {
-                                "name": "vnet-spoke-BU0001A0005-01-nic01",
+                                "name": "vnet-spoke-production-01-nic01",
                                 "properties": {
                                     "primary": true,
                                     "enableIPForwarding": false,
@@ -585,7 +585,7 @@
                         "name": "apw-frontend-ip-configuration",
                         "properties": {
                             "publicIPAddress": {
-                                "id": "[resourceId(subscription().subscriptionId, variables('vNetResourceGroup'), 'Microsoft.Network/publicIpAddresses', 'pip-BU0001A0005-00')]"
+                                "id": "[resourceId(subscription().subscriptionId, variables('vNetResourceGroup'), 'Microsoft.Network/publicIpAddresses', 'pip-production-00')]"
                             }
                         }
                     }
@@ -623,7 +623,7 @@
                 ],
                 "probes": [
                     {
-                        "name": "probe-bu0001a0005-00.aks-ingress.contoso.com",
+                        "name": "probe-production-00.aks-ingress.contoso.com",
                         "properties": {
                             "protocol": "Https",
                             "path": "/favicon.ico",
@@ -651,7 +651,7 @@
                 ],
                 "backendAddressPools": [
                     {
-                        "name": "bu0001a0005-00.aks-ingress.contoso.com",
+                        "name": "production-00.aks-ingress.contoso.com",
                         "properties": {
                             "backendAddresses": [
                                 {
@@ -669,11 +669,11 @@
                             "port": 443,
                             "protocol": "Https",
                             "cookieBasedAffinity": "Disabled",
-                            "hostName": "bu0001a0005-00.aks-ingress.contoso.com",
+                            "hostName": "production-00.aks-ingress.contoso.com",
                             "pickHostNameFromBackendAddress": false,
                             "requestTimeout": 20,
                             "probe": {
-                                "id": "[concat(resourceId('Microsoft.Network/applicationGateways', variables('agwName')),'/probes/probe-bu0001a0005-00.aks-ingress.contoso.com')]"
+                                "id": "[concat(resourceId('Microsoft.Network/applicationGateways', variables('agwName')),'/probes/probe-production-00.aks-ingress.contoso.com')]"
                             },
                             "trustedRootCertificates": [
                                 {
@@ -712,7 +712,7 @@
                                 "id": "[concat(variables('apwResourceId'), '/httpListeners/listener-https')]"
                             },
                             "backendAddressPool": {
-                                "id": "[concat(variables('apwResourceId'), '/backendAddressPools/bu0001a0005-00.aks-ingress.contoso.com')]"
+                                "id": "[concat(variables('apwResourceId'), '/backendAddressPools/production-00.aks-ingress.contoso.com')]"
                             },
                             "backendHttpSettings": {
                                 "id": "[concat(variables('apwResourceId'), '/backendHttpSettingsCollection/aks-ingress-contoso-backendpool-httpsettings')]"
@@ -1226,7 +1226,7 @@
             "location": "[parameters('location')]",
             "tags": {
                 "Data classification": "Confidential",
-                "Business unit": "BU0001",
+                "Business unit": "production",
                 "Business criticality": "Business unit-critical"
             },
             "dependsOn": [
@@ -1285,7 +1285,7 @@
                         "tags": {
                             "pci-scope": "out-of-scope",
                             "Data classification": "Confidential",
-                            "Business unit": "BU0001",
+                            "Business unit": "production",
                             "Business criticality": "Business unit-critical"
                         } /* This can be used to prevent unexpected workloads from landing on system node pool. All add-ons support this taint.,
                         "nodeTaints": [
@@ -1324,7 +1324,7 @@
                         "tags": {
                             "pci-scope": "in-scope",
                             "Data classification": "Confidential",
-                            "Business unit": "BU0001",
+                            "Business unit": "production",
                             "Business criticality": "Business unit-critical"
                         }
                     },
@@ -1360,7 +1360,7 @@
                         "tags": {
                             "pci-scope": "out-of-scope",
                             "Data classification": "Confidential",
-                            "Business unit": "BU0001",
+                            "Business unit": "production",
                             "Business criticality": "Business unit-critical"
                         }
                     }

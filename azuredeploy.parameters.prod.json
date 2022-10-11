@@ -9,7 +9,7 @@
       "value": "australiasoutheast"
     },
     "targetVnetResourceId": {
-      "value": "/subscriptions/[subscription id]/resourceGroups/rg-production-networking-spokes/providers/Microsoft.Network/virtualNetworks/vnet-spoke-BU0001A0005-01 - RESOURCEID_VNET_CLUSTERSPOKE"
+      "value": "/subscriptions/[subscription id]/resourceGroups/rg-production-networking-spokes/providers/Microsoft.Network/virtualNetworks/vnet-spoke-production-01 - RESOURCEID_VNET_CLUSTERSPOKE"
     },
     "clusterAdminAadGroupObjectId": {
       "value": "[guid--security-group-objectid-that-will-become-high-privileged-cluster-admin - AADOBJECTID_GROUP_CLUSTERADMIN]"

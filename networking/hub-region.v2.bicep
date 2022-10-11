@@ -65,7 +65,7 @@ resource rgSpokes 'Microsoft.Resources/resourceGroups@2021-04-01' existing = {
   name: split(aksImageBuilderSubnetResourceId, '/')[4]
 }
 
-@description('AKS Spoke Virtual Network BU0001A0005-00')
+@description('AKS Spoke Virtual Network production-00')
 resource aksImageBuilderVnet 'Microsoft.Network/virtualNetworks@2022-01-01' existing = {
   scope: rgSpokes
   name: split(aksImageBuilderSubnetResourceId, '/')[8]
@@ -77,7 +77,7 @@ resource aksImageBuilderSubnet 'Microsoft.Network/virtualNetworks/subnets@2022-0
   name: last(split(aksImageBuilderSubnetResourceId, '/'))
 }
 
-@description('AKS Spoke Virtual Network BU0001A0005-01')
+@description('AKS Spoke Virtual Network production-01')
 resource aksJumpboxVnet 'Microsoft.Network/virtualNetworks@2022-01-01' existing = {
   scope: rgSpokes
   name: split(aksJumpboxSubnetResourceId, '/')[8]

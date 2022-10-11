@@ -32,7 +32,7 @@ param deployFlowLogResources bool = true
 /*** VARIBALES ***/
 
 @description('The organization\'s application ID')
-var orgAppId = 'BU0001A0005'
+var orgAppId = 'production'
 
 /*** EXISTING RESOURCES ***/
 
@@ -903,7 +903,7 @@ resource akvPrivateDnsZones_virtualNetworkLink_toHubVNet 'Microsoft.Network/priv
 
 @description('Used as primary entry point for workload. Expected to be assigned to an Azure Application Gateway.')
 resource pipPrimaryCluster 'Microsoft.Network/publicIPAddresses@2021-05-01' = {
-    name: 'pip-BU0001A0005-00'
+    name: 'pip-production-00'
     location: location
     sku: {
         name: 'Standard'

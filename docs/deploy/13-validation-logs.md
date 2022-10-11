@@ -103,7 +103,7 @@ For example, if you wanted to see all interactions you had while going through t
 ```kusto
 AzureDiagnostics
 | where Category == 'kube-audit-admin'
-| where log_s contains '"username":"bu0001a000500-admin@yourdomain.com"'
+| where log_s contains '"username":"production00-admin@yourdomain.com"'
 ```
 
 ### Workload logs
