@@ -31,6 +31,8 @@ spec:
   sidecar:
     enablePrivilegedInitContainer: false
     logLevel: error
+    envoyImage: acraksxoopss4bpzbr6.azurecr.io/live/oss/envoyproxy/envoy:v1.19.3
+    initContainerImage: acraksxoopss4bpzbr6.azurecr.io/live/oss/openservicemesh/init:v1.1.2
   traffic:
     enableEgress: true
     enablePermissiveTrafficPolicyMode: false
